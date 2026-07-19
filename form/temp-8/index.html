@@ -308,7 +308,7 @@
         await ensureCounterDocument();
         const nextSequence = await getNextOrderSequence();
         const orderId = formatOrderId(nextSequence);
-        await addDoc(collection(db, TEMPLATE_CONFIG.ordersCollection), {
+        await setDoc(doc(db, TEMPLATE_CONFIG.ordersCollection,orderId), {
           orderId,
           templateId: TEMPLATE_CONFIG.templateId,
           status: "Waiting",
