@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>inviata ios</title>
+  <style>
+    :root{
+      --bg:#f4f7f1;--bg2:#eef4ec;--card:rgba(255,255,255,.86);--text:#223029;--muted:#66776c;--line:rgba(58,88,69,.12);
+      --sage:#7e9b83;--sage-deep:#5f7b65;--sage-soft:rgba(126,155,131,.12);--err:#b25555;--errbg:rgba(178,85,85,.08);
+      --shadow:0 18px 50px rgba(36,58,42,.08);--radius:26px;--radius-sm:16px;
+      --font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --ser:ui-serif,Georgia,Cambria,"Times New Roman",serif;
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent} html,body{margin:0;min-height:100%}
+    body{font-family:var(--font);color:var(--text);background:radial-gradient(circle at top left,rgba(126,155,131,.12),transparent 30%),radial-gradient(circle at top right,rgba(126,155,131,.08),transparent 24%),linear-gradient(180deg,var(--bg),var(--bg2));}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(rgba(255,255,255,.3),rgba(255,255,255,.12))}
+    .wrap{position:relative;z-index:1;max-width:780px;margin:auto;padding:20px 16px 120px}
+    .hero,.card,.success-panel{text-align:center}
+    .brand{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;border:1px solid rgba(126,155,131,.18);background:rgba(255,255,255,.72);backdrop-filter:blur(16px);box-shadow:0 10px 30px rgba(36,58,42,.06)}
+    .brand-dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,#a9c0ac,#6f8f75);box-shadow:0 0 0 6px rgba(126,155,131,.08)}
+    .brand-name{letter-spacing:.32em;font-size:.82rem;font-weight:700;color:var(--sage-deep);text-transform:uppercase}
+    h1,h2{margin:0;font-family:var(--ser);letter-spacing:-.03em}.hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.06;margin-top:18px}.sub{max-width:38rem;margin:14px auto 0;color:var(--muted);line-height:1.75}
+    .stack{display:grid;gap:18px;margin-top:24px}.card{padding:24px 18px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.82);background:linear-gradient(180deg,rgba(255,255,255,.96),var(--card));box-shadow:var(--shadow);backdrop-filter:blur(16px)}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--sage-deep);font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.eyebrow:before{content:"";width:18px;height:1px;background:rgba(126,155,131,.55)}
+    .copy{margin:8px auto 0;color:var(--muted);line-height:1.6;max-width:30rem}
+    .grid{display:grid;gap:14px}.two{grid-template-columns:1fr}.field,.choice-group{display:grid;gap:8px}.label{font-size:.92rem;font-weight:600}.label.req:after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#b8cdbb,#6f8f75);margin-left:7px;vertical-align:middle}
+    .helper{font-size:.82rem;line-height:1.5;color:var(--muted)}
+    input{width:100%;padding:15px 16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.88);font:inherit;color:var(--text);outline:none;transition:.22s;box-shadow:0 2px 10px rgba(17,12,8,.02);text-align:center}
+    input::placeholder{color:#9baba0} input:focus{border-color:rgba(126,155,131,.6);box-shadow:0 0 0 4px rgba(126,155,131,.12)}
+    .error{min-height:18px;font-size:.82rem;line-height:1.4;color:var(--err)} .bad input,.bad .shell,.bad.toggle{border-color:rgba(178,85,85,.44)!important;box-shadow:0 0 0 4px rgba(178,85,85,.08)!important;background:linear-gradient(180deg,#fff,#fff8f8)!important}
+    .shell{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.8);padding:6px}.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.choice{position:relative;display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:14px;color:#496054;font-weight:600;cursor:pointer;transition:.22s}.choice input{position:absolute;opacity:0}.choice.active{color:#fff;background:linear-gradient(135deg,#6d8a73,#8eb097);box-shadow:0 12px 24px rgba(73,103,80,.18);transform:translateY(-1px)}
+    .counter{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.8)}.icon{width:52px;height:52px;border:0;border-radius:16px;background:linear-gradient(180deg,#fff,#edf4ee);font-size:1.5rem;cursor:pointer;box-shadow:0 8px 16px rgba(36,58,42,.08)}.icon:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}.count-val{font-family:var(--ser);font-size:2rem;line-height:1}.count-label{margin-top:4px;font-size:.82rem;color:var(--muted)}
+    .toggle{display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.8)}.toggle input{position:absolute;opacity:0}.track{position:relative;width:52px;height:32px;border-radius:999px;background:rgba(34,48,41,.12)}.track:after{content:"";position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 8px 18px rgba(0,0,0,.12);transition:.22s}.toggle input:checked+.track{background:linear-gradient(135deg,#6d8a73,#8eb097)}.toggle input:checked+.track:after{transform:translateX(20px)}.toggle-text{display:grid;gap:4px}.toggle-title{font-weight:600}.toggle-sub{color:var(--muted);font-size:.88rem;line-height:1.45}
+    .subcard{margin-top:14px;padding:16px;border:1px solid rgba(126,155,131,.16);background:linear-gradient(180deg,rgba(242,248,242,.92),rgba(255,255,255,.8));border-radius:20px}.hidden{display:none!important}
+    .events{display:grid;gap:14px;margin-top:14px}.event-card{text-align:center;border:1px solid rgba(34,48,41,.08);border-radius:22px;padding:16px;background:rgba(255,255,255,.76);box-shadow:0 12px 30px rgba(36,58,42,.05)}.event-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.event-index{font-family:var(--ser);font-size:1.15rem}.event-badge{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-deep);background:var(--sage-soft);border-radius:999px;padding:8px 10px}.venue-note{margin-top:12px;padding:12px 14px;border-radius:16px;background:var(--sage-soft);color:var(--sage-deep);font-size:.9rem;line-height:1.5}
+    .actions{position:sticky;bottom:0;z-index:5;margin-top:22px;padding-bottom:max(14px,env(safe-area-inset-bottom))}.bar{border:1px solid rgba(255,255,255,.85);background:rgba(245,249,245,.86);backdrop-filter:blur(18px);box-shadow:0 20px 40px rgba(36,58,42,.08);border-radius:24px;padding:12px}.btn{width:100%;min-height:58px;border:0;border-radius:18px;padding:16px 20px;cursor:pointer;font:inherit;font-weight:700;font-size:1rem;color:#fff;background:linear-gradient(135deg,#6d8a73,#8eb097);box-shadow:0 18px 34px rgba(73,103,80,.24);display:inline-flex;align-items:center;justify-content:center;gap:12px}.btn:disabled{opacity:.72;cursor:wait}.spinner{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.28);border-top-color:#fff;display:none;animation:spin .8s linear infinite}.btn.loading .spinner{display:inline-block}
+    .alert{display:none;margin-top:12px;padding:14px 16px;border-radius:16px;border:1px solid rgba(178,85,85,.2);background:var(--errbg);color:var(--err);line-height:1.5;font-size:.92rem;text-align:center}.alert.show{display:block}
+    .success{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:22px;background:radial-gradient(circle at top,rgba(126,155,131,.16),transparent 34%),linear-gradient(180deg,rgba(246,250,246,.98),rgba(239,245,239,.99));opacity:0;visibility:hidden;pointer-events:none;transition:.45s}.success.show{opacity:1;visibility:visible;pointer-events:auto}.success-panel{width:min(100%,560px);padding:34px 24px;border-radius:34px;background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.9);box-shadow:0 30px 90px rgba(36,58,42,.12);backdrop-filter:blur(20px)}.orb{position:relative;width:112px;height:112px;margin:0 auto 22px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9),rgba(255,255,255,.2)),linear-gradient(135deg,#6d8a73,#9bb8a1);box-shadow:0 22px 48px rgba(73,103,80,.22);animation:pulse 2.8s ease-in-out infinite}.orb:before,.orb:after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(126,155,131,.18);animation:ring 2.4s ease-out infinite}.orb:after{animation-delay:.8s}.check{width:34px;height:18px;border-left:4px solid #fff;border-bottom:4px solid #fff;transform:rotate(-45deg) translateY(-2px)}.success h2{font-size:clamp(2rem,5vw,2.8rem);margin-bottom:12px}.success p{color:var(--muted);line-height:1.8;margin:0 auto;max-width:28ch}.order-pill{margin:24px auto 14px;display:inline-flex;align-items:center;justify-content:center;min-height:58px;padding:14px 20px;border-radius:18px;background:linear-gradient(135deg,#6d8a73,#8eb097);color:#fff;font-weight:700;letter-spacing:.08em;box-shadow:0 18px 34px rgba(73,103,80,.18);word-break:break-word}.success-note{color:#8c9c90;font-size:.92rem;line-height:1.6}
+    @media(min-width:680px){.wrap{padding:20px 22px 120px}.card{padding:28px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @keyframes spin{to{transform:rotate(360deg)}} @keyframes pulse{0%,100%{box-shadow:0 22px 48px rgba(73,103,80,.18)}50%{box-shadow:0 26px 58px rgba(73,103,80,.26)}} @keyframes ring{0%{opacity:.55;transform:scale(.92)}100%{opacity:0;transform:scale(1.24)}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="brand"><span class="brand-dot"></span><span class="brand-name">inviata ios</span></div>
+      <h1>Let's Begin Your Invitation Journey</h1>
+      <p class="sub">Every celebration deserves a beautifully crafted beginning. Share your details below and we'll transform them into your personalized invitation experience.</p>
+    </header>
+
+    <form id="orderForm" novalidate>
+      <div class="stack">
+        <section class="card">
+          <div class="eyebrow">Customer Details</div>
+          <h2>Your Celebration Begins Here</h2>
+          <div class="grid" style="margin-top:18px">
+            <div class="field" id="field-customerName"><label class="label req" for="customerName">Person Placing Order</label><input id="customerName" autocomplete="name" placeholder="Enter full name" /><div class="error" data-error-for="customerName"></div></div>
+          </div>
+          <div class="grid two">
+            <div class="field" id="field-customerEmail"><label class="label req" for="customerEmail">Email Address</label><input id="customerEmail" type="email" inputmode="email" autocomplete="email" placeholder="name@example.com" /><div class="error" data-error-for="customerEmail"></div></div>
+            <div class="field" id="field-customerPhone"><label class="label req" for="customerPhone">Phone Number</label><input id="customerPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210" /><div class="error" data-error-for="customerPhone"></div></div>
+          </div>
+          <div class="grid two">
+            <div class="choice-group" id="group-invitationSide"><label class="label req">Invitation Side</label><div class="shell"><div class="options"><label class="choice" data-choice><input type="radio" name="invitationSide" value="Bride" /><span>Bride</span></label><label class="choice" data-choice><input type="radio" name="invitationSide" value="Groom" /><span>Groom</span></label></div></div><div class="error" data-error-for="invitationSide"></div></div>
+            <div class="choice-group" id="group-nameOrder"><label class="label req">Which name should appear first?</label><div class="shell"><div class="options"><label class="choice" data-choice><input type="radio" name="nameOrder" value="Bride First" /><span>Bride First</span></label><label class="choice" data-choice><input type="radio" name="nameOrder" value="Groom First" /><span>Groom First</span></label></div></div><div class="error" data-error-for="nameOrder"></div></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="eyebrow">Bride Details</div>
+          <h2>About the Bride</h2>
+          <div class="grid" style="margin-top:18px">
+            <div class="field" id="field-brideName"><label class="label req" for="brideName">Bride Name</label><input id="brideName" placeholder="Enter bride name" /><div class="helper">(Write exact words which you want in invitation)</div><div class="error" data-error-for="brideName"></div></div>
+            <div class="field" id="field-brideParents"><label class="label req" for="brideParents">Bride Parents</label><input id="brideParents" placeholder="Enter parents' names" /><div class="error" data-error-for="brideParents"></div></div>
+            <div class="field" id="field-brideGrandparents"><label class="label" for="brideGrandparents">Bride Grandparents</label><input id="brideGrandparents" placeholder="Optional" /><div class="error" data-error-for="brideGrandparents"></div></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="eyebrow">Groom Details</div>
+          <h2>About the Groom</h2>
+          <div class="grid" style="margin-top:18px">
+            <div class="field" id="field-groomName"><label class="label req" for="groomName">Groom Name</label><input id="groomName" placeholder="Enter groom name" /><div class="helper">(Write exact words which you want in invitation)</div><div class="error" data-error-for="groomName"></div></div>
+            <div class="field" id="field-groomParents"><label class="label req" for="groomParents">Groom Parents</label><input id="groomParents" placeholder="Enter parents' names" /><div class="error" data-error-for="groomParents"></div></div>
+            <div class="field" id="field-groomGrandparents"><label class="label" for="groomGrandparents">Groom Grandparents</label><input id="groomGrandparents" placeholder="Optional" /><div class="error" data-error-for="groomGrandparents"></div></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="eyebrow">Events</div>
+          <h2>The Celebration Flow</h2>
+          <p class="copy">How many events are included in your celebration?</p>
+          <div class="field" style="margin-top:18px">
+            <div class="counter"><button type="button" class="icon" id="decreaseEvents">−</button><div><div class="count-val" id="eventCountDisplay">1</div><div class="count-label" id="eventCountLabel">Event</div></div><button type="button" class="icon" id="increaseEvents">+</button></div>
+            <input id="eventCount" type="hidden" value="1" />
+            <div class="error" data-error-for="eventCount"></div>
+          </div>
+          <label class="toggle" id="sameVenueWrapper"><input id="sameVenue" type="checkbox" /><span class="track"></span><span class="toggle-text"><span class="toggle-title">Same Venue For All Events</span><span class="toggle-sub">Share one venue once and it will be applied everywhere.</span></span></label>
+          <div class="subcard hidden" id="sharedVenueBlock"><div class="grid"><div class="field" id="field-sharedVenue"><label class="label req" for="sharedVenue">Venue</label><input id="sharedVenue" placeholder="Enter venue name" /><div class="error" data-error-for="sharedVenue"></div></div><div class="field" id="field-sharedMapsLink"><label class="label req" for="sharedMapsLink">Google Maps Link</label><input id="sharedMapsLink" type="url" inputmode="url" placeholder="https://maps.google.com/..." /><div class="error" data-error-for="sharedMapsLink"></div></div></div></div>
+          <div class="events" id="eventsContainer"></div>
+        </section>
+
+        <section class="card">
+          <div class="eyebrow">Closing</div>
+          <h2>The Final Signature</h2>
+          <div class="grid two" style="margin-top:18px">
+            <div class="field" id="field-withLoveText"><label class="label req" for="withLoveText">With Love Text</label><input id="withLoveText" placeholder="With Love" /><div class="error" data-error-for="withLoveText"></div></div>
+            <div class="field" id="field-familyName"><label class="label req" for="familyName">Family Name</label><input id="familyName" placeholder="Enter family name" /><div class="error" data-error-for="familyName"></div></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="actions"><div class="bar"><button type="submit" class="btn" id="submitButton"><span class="spinner"></span><span id="submitButtonText">Begin My Invitation Journey</span></button><div class="alert" id="formAlert"></div></div></div>
+    </form>
+  </main>
+
+  <section class="success" id="successScreen"><div class="success-panel"><div class="orb"><div class="check"></div></div><h2>You're All Set!</h2><p>Thank you for sharing your celebration with us.<br />Your invitation journey has officially begun.</p><div class="order-pill" id="successOrderId">INV-C-T08-0001</div><div class="success-note">Please save this Order ID for future communication.</div></div></section>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getFirestore, collection, doc, getDoc, setDoc, addDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2O7K4B0v8A5xtiuKyMtQwRnw8K1uiLWw",
+      authDomain: "inviata-os-ea6d3.firebaseapp.com",
+      projectId: "inviata-os-ea6d3",
+      storageBucket: "inviata-os-ea6d3.firebasestorage.app",
+      messagingSenderId: "836729940894",
+      appId: "1:836729940894:web:c38a19cbf0528a93a0848f"
+    };
+
+    const TEMPLATE_CONFIG = { orderPrefix:"INV-C", templateId:"T008", templateCode:"T08", ordersCollection:"orders", systemCollection:"system", counterDocumentId:"orderCounter", minEvents:1, maxEvents:12 };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById("orderForm");
+    const submitButton = document.getElementById("submitButton");
+    const submitButtonText = document.getElementById("submitButtonText");
+    const formAlert = document.getElementById("formAlert");
+    const sameVenueCheckbox = document.getElementById("sameVenue");
+    const sameVenueWrapper = document.getElementById("sameVenueWrapper");
+    const sharedVenueBlock = document.getElementById("sharedVenueBlock");
+    const eventsContainer = document.getElementById("eventsContainer");
+    const eventCountInput = document.getElementById("eventCount");
+    const eventCountDisplay = document.getElementById("eventCountDisplay");
+    const eventCountLabel = document.getElementById("eventCountLabel");
+    const decreaseEvents = document.getElementById("decreaseEvents");
+    const increaseEvents = document.getElementById("increaseEvents");
+    const successScreen = document.getElementById("successScreen");
+    const successOrderId = document.getElementById("successOrderId");
+    let isSubmitting = false;
+
+    init();
+
+    function init(){
+      updateChoiceUI();
+      bindEvents();
+      renderEventCards(getEventCount());
+      ensureCounterDocument().catch((error)=>console.error("Counter init failed:", error));
+    }
+
+    function bindEvents(){
+      decreaseEvents.addEventListener("click", ()=>updateEventCount(-1));
+      increaseEvents.addEventListener("click", ()=>updateEventCount(1));
+      sameVenueCheckbox.addEventListener("change", ()=>{ toggleSharedVenueBlock(); renderEventCards(getEventCount(), getCurrentEventValues()); clearError("sameVenue"); });
+      form.addEventListener("change", (event)=>{
+        const target = event.target;
+        if(target.matches('input[type="radio"]')){ updateChoiceUI(); clearError(target.name); }
+        if(target.matches("[data-event-field]")) validateFieldByElement(target);
+        if(target.id === "sharedVenue" || target.id === "sharedMapsLink") validateSharedVenueFields();
+      });
+      form.addEventListener("input", (event)=>{
+        const target = event.target;
+        if(target.matches("input")) clearFieldErrorState(target);
+        if(target.id === "customerEmail") validateEmailField();
+        if(target.id === "customerPhone") validatePhoneField();
+        if(target.id === "sharedMapsLink") validateGoogleMapsLink("sharedMapsLink");
+        if(target.dataset.eventField === "mapsLink") validateGoogleMapsLink(target.id);
+      });
+      form.addEventListener("blur", (event)=>{ const target = event.target; if(target.matches("input")) validateFieldByElement(target); }, true);
+      form.addEventListener("submit", handleSubmit);
+    }
+
+    function getEventCount(){ return Number(eventCountInput.value) || 1; }
+    function updateEventCount(delta){ const next = Math.max(TEMPLATE_CONFIG.minEvents, Math.min(TEMPLATE_CONFIG.maxEvents, getEventCount()+delta)); if(next===getEventCount()) return; const preserved = getCurrentEventValues(); eventCountInput.value = String(next); eventCountDisplay.textContent = String(next); eventCountLabel.textContent = next === 1 ? "Event" : "Events"; renderEventCards(next, preserved); updateCounterButtons(); clearError("eventCount"); }
+    function updateCounterButtons(){ const count = getEventCount(); decreaseEvents.disabled = count <= TEMPLATE_CONFIG.minEvents; increaseEvents.disabled = count >= TEMPLATE_CONFIG.maxEvents; }
+    function toggleSharedVenueBlock(){ sharedVenueBlock.classList.toggle("hidden", !sameVenueCheckbox.checked); sameVenueWrapper.classList.remove("bad"); }
+
+    function renderEventCards(count, preservedValues = []){
+      const sameVenue = sameVenueCheckbox.checked;
+      eventsContainer.innerHTML = "";
+      for(let index=0; index<count; index++){
+        const data = preservedValues[index] || {};
+        const card = document.createElement("article");
+        card.className = "event-card";
+        card.innerHTML = `
+          <div class="event-head"><div class="event-index">Event ${String(index+1).padStart(2,"0")}</div><div class="event-badge">Celebration</div></div>
+          <div class="grid">
+            <div class="field" id="field-eventName-${index}"><label class="label req" for="eventName-${index}">Event Name</label><input id="eventName-${index}" data-event-index="${index}" data-event-field="name" placeholder="Sangeet, Wedding, Reception..." value="${escapeHtml(data.name || "")}" /><div class="error" data-error-for="eventName-${index}"></div></div>
+            <div class="grid two">
+              <div class="field" id="field-eventDate-${index}"><label class="label req" for="eventDate-${index}">Event Date</label><input id="eventDate-${index}" data-event-index="${index}" data-event-field="date" type="date" value="${escapeHtml(data.date || "")}" /><div class="error" data-error-for="eventDate-${index}"></div></div>
+              <div class="field" id="field-eventTime-${index}"><label class="label req" for="eventTime-${index}">Event Time</label><input id="eventTime-${index}" data-event-index="${index}" data-event-field="time" type="time" value="${escapeHtml(data.time || "")}" /><div class="error" data-error-for="eventTime-${index}"></div></div>
+            </div>
+            ${sameVenue ? `<div class="venue-note">Venue details will be shared across every event.</div>` : `
+              <div class="field" id="field-eventVenue-${index}"><label class="label req" for="eventVenue-${index}">Venue</label><input id="eventVenue-${index}" data-event-index="${index}" data-event-field="venue" placeholder="Enter venue name" value="${escapeHtml(data.venue || "")}" /><div class="error" data-error-for="eventVenue-${index}"></div></div>
+              <div class="field" id="field-eventMapsLink-${index}"><label class="label req" for="eventMapsLink-${index}">Google Maps Link</label><input id="eventMapsLink-${index}" data-event-index="${index}" data-event-field="mapsLink" type="url" inputmode="url" placeholder="https://maps.google.com/..." value="${escapeHtml(data.mapsLink || "")}" /><div class="error" data-error-for="eventMapsLink-${index}"></div></div>`}
+          </div>`;
+        eventsContainer.appendChild(card);
+      }
+      updateCounterButtons();
+      toggleSharedVenueBlock();
+      updateChoiceUI();
+    }
+
+    function getCurrentEventValues(){
+      const values = [];
+      for(let i=0; i<getEventCount(); i++){
+        values.push({ name:getValue(`eventName-${i}`), date:getValue(`eventDate-${i}`), time:getValue(`eventTime-${i}`), venue:getValue(`eventVenue-${i}`), mapsLink:getValue(`eventMapsLink-${i}`) });
+      }
+      return values;
+    }
+
+    async function ensureCounterDocument(){
+      const ref = doc(db, TEMPLATE_CONFIG.systemCollection, TEMPLATE_CONFIG.counterDocumentId);
+      const snap = await getDoc(ref);
+      if(!snap.exists()) await setDoc(ref, { lastValue:0, updatedAt:serverTimestamp() }, { merge:true });
+    }
+
+    async function getNextOrderSequence(){
+      const ref = doc(db, TEMPLATE_CONFIG.systemCollection, TEMPLATE_CONFIG.counterDocumentId);
+      return await runTransaction(db, async (transaction)=>{
+        const snap = await transaction.get(ref);
+        if(!snap.exists()){
+          transaction.set(ref, { lastValue:1, updatedAt:serverTimestamp() });
+          return 1;
+        }
+        const next = Number(snap.data().lastValue || 0) + 1;
+        transaction.update(ref, { lastValue:next, updatedAt:serverTimestamp() });
+        return next;
+      });
+    }
+
+    function formatOrderId(sequence){ return `${TEMPLATE_CONFIG.orderPrefix}-${TEMPLATE_CONFIG.templateCode}-${String(sequence).padStart(4, "0")}`; }
+
+    function buildPayload(){
+      const sameVenue = sameVenueCheckbox.checked;
+      const sharedVenue = normalizeText(getValue("sharedVenue"));
+      const sharedMapsLink = normalizeText(getValue("sharedMapsLink"));
+      const events = [];
+      for(let i=0; i<getEventCount(); i++){
+        events.push({
+          name: normalizeText(getValue(`eventName-${i}`)),
+          date: getValue(`eventDate-${i}`),
+          time: getValue(`eventTime-${i}`),
+          venue: sameVenue ? sharedVenue : normalizeText(getValue(`eventVenue-${i}`)),
+          googleMapsLink: sameVenue ? sharedMapsLink : normalizeText(getValue(`eventMapsLink-${i}`))
+        });
+      }
+      return {
+        customer: {
+          personPlacingOrder: normalizeText(getValue("customerName")),
+          emailAddress: normalizeText(getValue("customerEmail")).toLowerCase(),
+          phoneNumber: normalizeText(getValue("customerPhone")),
+          invitationSide: getRadioValue("invitationSide"),
+          nameOrder: getRadioValue("nameOrder")
+        },
+        bride: {
+          name: normalizeText(getValue("brideName")),
+          parents: normalizeText(getValue("brideParents")),
+          grandparents: normalizeText(getValue("brideGrandparents"))
+        },
+        groom: {
+          name: normalizeText(getValue("groomName")),
+          parents: normalizeText(getValue("groomParents")),
+          grandparents: normalizeText(getValue("groomGrandparents"))
+        },
+        events,
+        closing: {
+          withLoveText: normalizeText(getValue("withLoveText")),
+          familyName: normalizeText(getValue("familyName"))
+        }
+      };
+    }
+
+    async function handleSubmit(event){
+      event.preventDefault();
+      hideAlert();
+      if(isSubmitting) return;
+
+      if(window.location.protocol === "file:"){
+        showAlert("Please open this page through a local or live web address before saving.");
+        return;
+      }
+
+      const isValid = validateForm();
+      if(!isValid) return;
+
+      const payload = buildPayload();
+      const fingerprint = createPayloadFingerprint(payload);
+      if(sessionStorage.getItem("inviata:lastSubmissionFingerprint") === fingerprint){
+        showAlert("This celebration has already been submitted from this device.");
+        return;
+      }
+
+      setSubmitting(true);
+      try{
+        await ensureCounterDocument();
+        const nextSequence = await getNextOrderSequence();
+        const orderId = formatOrderId(nextSequence);
+        await addDoc(collection(db, TEMPLATE_CONFIG.ordersCollection), {
+          orderId,
+          templateId: TEMPLATE_CONFIG.templateId,
+          status: "Waiting",
+          createdAt: serverTimestamp(),
+          customer: payload.customer,
+          bride: payload.bride,
+          groom: payload.groom,
+          events: payload.events,
+          closing: payload.closing
+        });
+        sessionStorage.setItem("inviata:lastSubmissionFingerprint", fingerprint);
+        sessionStorage.setItem("inviata:lastOrderId", orderId);
+        successOrderId.textContent = orderId;
+        successScreen.classList.add("show");
+      }catch(error){
+        console.error("Submission failed:", error);
+        showAlert(getReadableFirebaseError(error));
+      }finally{
+        setSubmitting(false);
+      }
+    }
+
+    function validateForm(){
+      let valid = true;
+      valid = validateRequiredText("customerName", "Please enter the name for this order.") && valid;
+      valid = validateEmailField() && valid;
+      valid = validatePhoneField() && valid;
+      valid = validateRadioGroup("invitationSide", "Please choose one invitation side.") && valid;
+      valid = validateRadioGroup("nameOrder", "Please choose how the names should appear.") && valid;
+      valid = validateRequiredText("brideName", "Please enter the bride's name.") && valid;
+      valid = validateRequiredText("brideParents", "Please enter the bride parents.") && valid;
+      valid = validateRequiredText("groomName", "Please enter the groom's name.") && valid;
+      valid = validateRequiredText("groomParents", "Please enter the groom parents.") && valid;
+      valid = validateRequiredText("withLoveText", "Please enter the closing text.") && valid;
+      valid = validateRequiredText("familyName", "Please enter the family name.") && valid;
+      if(getEventCount() < 1){ setError("eventCount", "Please add at least one event."); valid = false; } else clearError("eventCount");
+      if(sameVenueCheckbox.checked) valid = validateSharedVenueFields() && valid;
+      for(let i=0; i<getEventCount(); i++){
+        valid = validateRequiredText(`eventName-${i}`, "Please enter an event name.") && valid;
+        valid = validateRequiredText(`eventDate-${i}`, "Please select an event date.") && valid;
+        valid = validateRequiredText(`eventTime-${i}`, "Please select an event time.") && valid;
+        if(!sameVenueCheckbox.checked){
+          valid = validateRequiredText(`eventVenue-${i}`, "Please enter a venue.") && valid;
+          valid = validateGoogleMapsLink(`eventMapsLink-${i}`) && valid;
+        }
+      }
+      if(!valid) focusFirstError();
+      return valid;
+    }
+
+    function validateFieldByElement(element){
+      const id = element.id;
+      if(!id) return true;
+      if(id === "customerEmail") return validateEmailField();
+      if(id === "customerPhone") return validatePhoneField();
+      if(id === "sharedMapsLink") return validateGoogleMapsLink(id);
+      if(id === "sharedVenue") return validateRequiredText(id, "Please enter the venue.");
+      if(id.startsWith("eventMapsLink-")) return validateGoogleMapsLink(id);
+      if(id.startsWith("eventName-")) return validateRequiredText(id, "Please enter an event name.");
+      if(id.startsWith("eventDate-")) return validateRequiredText(id, "Please select an event date.");
+      if(id.startsWith("eventTime-")) return validateRequiredText(id, "Please select an event time.");
+      if(id.startsWith("eventVenue-")) return validateRequiredText(id, "Please enter a venue.");
+      const requiredMessages = {
+        customerName: "Please enter the name for this order.",
+        brideName: "Please enter the bride's name.",
+        brideParents: "Please enter the bride parents.",
+        groomName: "Please enter the groom's name.",
+        groomParents: "Please enter the groom parents.",
+        withLoveText: "Please enter the closing text.",
+        familyName: "Please enter the family name."
+      };
+      return requiredMessages[id] ? validateRequiredText(id, requiredMessages[id]) : true;
+    }
+
+    function validateRequiredText(fieldId, message){
+      if(!getValue(fieldId).trim()){ setError(fieldId, message); return false; }
+      clearError(fieldId); return true;
+    }
+
+    function validateEmailField(){
+      const value = getValue("customerEmail").trim();
+      if(!value){ setError("customerEmail", "Please enter an email address."); return false; }
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)){ setError("customerEmail", "Please enter a valid email address."); return false; }
+      clearError("customerEmail"); return true;
+    }
+
+    function validatePhoneField(){
+      const value = getValue("customerPhone").trim();
+      const digits = value.replace(/\D/g, "");
+      if(!value){ setError("customerPhone", "Please enter a phone number."); return false; }
+      if(!/^[+()\-\s\d]{7,20}$/.test(value) || digits.length < 7 || digits.length > 15){ setError("customerPhone", "Please enter a valid phone number."); return false; }
+      clearError("customerPhone"); return true;
+    }
+
+    function validateGoogleMapsLink(fieldId){
+      const value = getValue(fieldId).trim();
+      if(!value){ setError(fieldId, "Please add a Google Maps link."); return false; }
+      try{
+        const url = new URL(value);
+        const host = url.hostname.replace(/^www\./, "").toLowerCase();
+        if(!/(google\.[a-z.]+|goo\.gl|maps\.app\.goo\.gl)/.test(host)){
+          setError(fieldId, "Please use a Google Maps link.");
+          return false;
+        }
+      }catch(_){ setError(fieldId, "Please enter a valid link."); return false; }
+      clearError(fieldId); return true;
+    }
+
+    function validateSharedVenueFields(){
+      let valid = validateRequiredText("sharedVenue", "Please enter the venue.");
+      valid = validateGoogleMapsLink("sharedMapsLink") && valid;
+      return valid;
+    }
+
+    function validateRadioGroup(name, message){
+      if(!getRadioValue(name)){ setError(name, message); return false; }
+      clearError(name); return true;
+    }
+
+    function setError(key, message){
+      const errorNode = document.querySelector(`[data-error-for="${key}"]`);
+      if(errorNode) errorNode.textContent = message;
+      const wrap = document.getElementById(`field-${key}`) || document.getElementById(`group-${key}`) || (key === "sameVenue" ? sameVenueWrapper : null);
+      if(wrap) wrap.classList.add("bad");
+    }
+
+    function clearError(key){
+      const errorNode = document.querySelector(`[data-error-for="${key}"]`);
+      if(errorNode) errorNode.textContent = "";
+      const wrap = document.getElementById(`field-${key}`) || document.getElementById(`group-${key}`) || (key === "sameVenue" ? sameVenueWrapper : null);
+      if(wrap) wrap.classList.remove("bad");
+    }
+
+    function clearFieldErrorState(element){
+      const wrap = element.closest(".field, .choice-group, .toggle");
+      if(wrap) wrap.classList.remove("bad");
+      const key = element.id || element.name;
+      const errorNode = document.querySelector(`[data-error-for="${key}"]`);
+      if(errorNode) errorNode.textContent = "";
+    }
+
+    function focusFirstError(){
+      const target = document.querySelector(".bad input, .bad .shell, .bad.toggle");
+      if(target){ target.scrollIntoView({ behavior:"smooth", block:"center" }); if(target.focus) target.focus({ preventScroll:true }); }
+    }
+
+    function setSubmitting(active){
+      isSubmitting = active;
+      submitButton.disabled = active;
+      submitButton.classList.toggle("loading", active);
+      submitButtonText.textContent = active ? "Saving..." : "Begin My Invitation Journey";
+    }
+
+    function showAlert(message){ formAlert.textContent = message; formAlert.classList.add("show"); }
+    function hideAlert(){ formAlert.textContent = ""; formAlert.classList.remove("show"); }
+    function updateChoiceUI(){ document.querySelectorAll("[data-choice]").forEach((choice)=>choice.classList.toggle("active", !!choice.querySelector("input")?.checked)); }
+    function getValue(id){ return document.getElementById(id)?.value || ""; }
+    function getRadioValue(name){ return document.querySelector(`input[name="${name}"]:checked`)?.value || ""; }
+    function normalizeText(value){ return value.trim().replace(/\s+/g, " "); }
+    function escapeHtml(value){ return String(value).replace(/[&<>"']/g, (match)=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[match])); }
+    function createPayloadFingerprint(payload){ const text = JSON.stringify(payload); let hash = 0; for(let i=0;i<text.length;i++){ hash = (hash << 5) - hash + text.charCodeAt(i); hash |= 0; } return String(hash); }
+
+    function getReadableFirebaseError(error){
+      const code = error?.code || "";
+      if(code.includes("permission-denied")) return "Firebase is blocking this save. Please allow write access for orders and system/orderCounter in Firestore rules.";
+      if(code.includes("unauthenticated")) return "This project is asking for sign-in before saving. Please update the Firestore rules or add authentication.";
+      if(code.includes("unavailable")) return "The connection is not available right now. Please try again in a moment.";
+      if(code.includes("failed-precondition")) return "This page needs to be opened from localhost or a live domain before saving.";
+      return "We couldn't save your details right now. Please check your browser console and Firestore rules, then try again.";
+    }
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
