@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Manaf | Inviata</title>
+
+  <!-- Open Graph / WhatsApp Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://inviata.in/Manaf/" />
+  <meta property="og:title" content="A beautiful new beginning" />
+  <meta property="og:description" content="Tap to begin" />
+  <meta property="og:image" content="https://res.cloudinary.com/dx3f65i2v/image/upload/f_auto,q_auto,w_1200/v1784612910/file_0000000058988207b10414511d7960b2_kp60ua.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="A beautiful new beginning" />
+  <meta name="twitter:description" content="Tap to begin" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/dx3f65i2v/image/upload/f_auto,q_auto,w_1200/v1784612910/file_0000000058988207b10414511d7960b2_kp60ua.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa+Ink:wght@400;700&family=Cairo:wght@600;700;800&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --charcoal: #3F342C;
+      --blue: #5E8FBF;
+      --silver: rgba(231, 234, 239, 0.94);
+      --silver-soft: rgba(206, 212, 220, 0.66);
+      --button-bg: linear-gradient(135deg, rgba(120, 166, 214, 0.42), rgba(255, 233, 189, 0.24));
+      --button-border: rgba(255, 241, 214, 0.56);
+      --button-shadow: 0 16px 48px rgba(0, 0, 0, 0.24), 0 0 24px rgba(140, 194, 255, 0.22);
+      --footer-line: rgba(255, 230, 186, 0.50);
+      --footer-gold: #F3D7A2;
+      --footer-pearl: #F8E9C7;
+      --footer-blue: #B8D4F0;
+      --modal-backdrop: rgba(15, 17, 20, 0.68);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-top: env(safe-area-inset-top, 0px);
+      --vh: 1vh;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      background: radial-gradient(circle at 28% 18%, #A7C4E3 0%, #6F96BE 34%, #B99F84 72%, #78614F 100%);
+      overflow: hidden;
+      font-family: 'Amiri', serif;
+    }
+
+    body {
+      position: relative;
+      color: #fff;
+      height: calc(var(--vh, 1vh) * 100);
+    }
+
+    .app {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: radial-gradient(circle at 28% 18%, #A7C4E3 0%, #6F96BE 34%, #B99F84 72%, #78614F 100%);
+      isolation: isolate;
+    }
+
+    video#bgVideo,
+    canvas#freezeCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: transparent;
+    }
+
+    canvas#freezeCanvas {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      z-index: 2;
+    }
+
+    .video-dim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.16) 40%, rgba(0, 0, 0, 0.18));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .intro-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      backdrop-filter: blur(22px) saturate(1.1);
+      -webkit-backdrop-filter: blur(22px) saturate(1.1);
+      background:
+        linear-gradient(135deg, rgba(105, 149, 194, 0.34), rgba(245, 226, 197, 0.24)),
+        radial-gradient(circle at center, rgba(255,255,255,0.20), rgba(120,149,182,0.26) 55%, rgba(98,112,129,0.34));
+      transition: opacity 0.55s ease, visibility 0.55s ease;
+    }
+
+    .intro-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .start-button {
+      border: 1px solid rgba(255,245,231,0.56);
+      background: linear-gradient(135deg, rgba(255,255,255,0.24), rgba(242,228,205,0.18));
+      color: #5E8FBF;
+      padding: 20px 38px;
+      border-radius: 999px;
+      box-shadow: 0 16px 44px rgba(43, 51, 63, 0.20), inset 0 1px 0 rgba(255,255,255,0.30);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      font-family: 'Aref Ruqaa Ink', 'Amiri', serif;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height: 1.2;
+      cursor: pointer;
+      text-shadow: 0 0 18px rgba(145, 185, 230, 0.22);
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+      min-width: min(82vw, 360px);
+      text-align: center;
+    }
+
+    .start-button:active {
+      transform: scale(0.985);
+      background: linear-gradient(135deg, rgba(255,255,255,0.30), rgba(242,228,205,0.22));
+      border-color: rgba(255,248,238,0.66);
+      color: #4E83B8;
+    }
+
+    .content-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: max(22px, calc(var(--safe-top) + 18px)) 20px max(32px, calc(var(--safe-bottom) + 28px));
+      pointer-events: none;
+    }
+
+    .text-panel {
+      width: min(100%, 700px);
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      color: var(--charcoal);
+      pointer-events: none;
+      margin-top: clamp(38vh, 46vh, 52vh);
+      transform: translateY(0%);
+    }
+
+    .text-panel.visible {
+      opacity: 1;
+    }
+
+    .line {
+      opacity: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      min-height: 1.1em;
+      unicode-bidi: plaintext;
+      will-change: opacity;
+    }
+
+    .line.showing {
+      opacity: 0.85;
+    }
+
+    .line.done {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .arabic {
+      direction: rtl;
+      font-family: 'Amiri', 'Aref Ruqaa Ink', serif;
+      color: var(--charcoal);
+      font-weight: 500;
+      line-height: 1.36;
+      text-wrap: balance;
+    }
+
+    .english {
+      direction: ltr;
+      font-family: 'Cormorant Garamond', serif;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      color: var(--blue);
+      line-height: 1.15;
+    }
+
+    .line-1 {
+      font-size: clamp(22px, 3.1vw, 31px);
+      margin-bottom: 4px;
+    }
+
+    .line-2 {
+      font-size: clamp(22px, 3vw, 30px);
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    .hero-ar {
+      font-family: 'Cairo', 'Amiri', sans-serif;
+      font-size: clamp(48px, 8vw, 68px);
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 0.98;
+      margin-bottom: 2px;
+    }
+
+    .hero-en {
+      font-size: clamp(28px, 4.7vw, 48px);
+      font-weight: 600;
+      margin-bottom: 12px;
+      padding-left: 0.28em;
+      letter-spacing: 0.28em;
+    }
+
+    .father {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .prayer-1,
+    .prayer-2 {
+      font-size: clamp(21px, 2.8vw, 28px);
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .sparkles {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .sparkle {
+      position: absolute;
+      top: -16px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.95), rgba(235,238,243,0.85) 45%, rgba(184,191,201,0.38) 70%, rgba(255,255,255,0) 100%);
+      filter: blur(0.15px);
+      opacity: 0;
+      animation: fall linear forwards;
+      box-shadow: 0 0 8px rgba(255,255,255,0.32), 0 0 16px rgba(201,208,218,0.18);
+    }
+
+    @keyframes fall {
+      0% { transform: translate3d(0, -2vh, 0) scale(0.9); opacity: 0; }
+      10% { opacity: 0.9; }
+      85% { opacity: 0.52; }
+      100% { transform: translate3d(var(--drift), 106vh, 0) scale(1.08); opacity: 0; }
+    }
+
+    @keyframes buttonGlow {
+      0%, 100% {
+        box-shadow: var(--button-shadow), inset 0 0 0 1px rgba(255,255,255,0.14), 0 0 18px rgba(255, 228, 182, 0.18);
+      }
+      50% {
+        box-shadow: 0 18px 54px rgba(0, 0, 0, 0.24), inset 0 0 0 1px rgba(255,255,255,0.20), 0 0 28px rgba(255, 228, 182, 0.34), 0 0 42px rgba(126, 174, 224, 0.22);
+      }
+    }
+
+    .moment-button {
+      position: absolute;
+      right: clamp(12px, 3vw, 26px);
+      top: max(14px, calc(var(--safe-top) + 10px));
+      z-index: 8;
+      pointer-events: auto;
+      border: 1px solid var(--button-border);
+      background: var(--button-bg);
+      color: #FFF6E6;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(16px, 2.9vw, 19px);
+      letter-spacing: 0.08em;
+      box-shadow: var(--button-shadow), inset 0 0 0 1px rgba(255,255,255,0.14), 0 0 22px rgba(255, 228, 182, 0.24);
+      text-shadow: 0 0 14px rgba(255, 234, 201, 0.34);
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.45s ease, transform 0.45s ease, background 0.25s ease, box-shadow 0.25s ease;
+      visibility: hidden;
+    }
+
+    .moment-button-wrap {
+      position: absolute;
+      right: clamp(12px, 3vw, 26px);
+      top: max(14px, calc(var(--safe-top) + 10px));
+      z-index: 8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .moment-button-wrap.visible {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+
+    .moment-button.visible {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+      animation: buttonGlow 2.8s ease-in-out infinite;
+    }
+
+    .moment-button:active {
+      background: linear-gradient(135deg, rgba(126, 174, 224, 0.58), rgba(255, 232, 185, 0.34));
+    }
+
+    .tap-guide {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: rgba(255, 245, 229, 0.92);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(10px, 1.8vw, 12px);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(255, 243, 220, 0.22);
+      white-space: nowrap;
+      opacity: 0.88;
+    }
+
+    .tap-guide::before {
+      content: '↗';
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .footer {
+      position: absolute;
+      left: 50%;
+      bottom: max(16px, calc(var(--safe-bottom) + 10px));
+      transform: translateX(-50%);
+      z-index: 7;
+      width: min(92vw, 560px);
+      text-align: center;
+      color: #243E59;
+      font-size: clamp(12px, 2.2vw, 14px);
+      letter-spacing: 0.08em;
+      font-family: 'Cormorant Garamond', serif;
+      opacity: 0;
+      transition: opacity 0.65s ease;
+      pointer-events: none;
+      text-transform: none;
+      padding: 0 16px;
+      text-shadow: 0 1px 10px rgba(246, 232, 210, 0.14);
+    }
+
+    .footer.visible { opacity: 1; }
+
+    .footer::before {
+      content: '';
+      display: block;
+      width: min(72vw, 340px);
+      height: 1px;
+      margin: 0 auto 12px;
+      background: linear-gradient(to right, rgba(40,61,87,0), rgba(46,72,102,0.54), rgba(40,61,87,0));
+      box-shadow: 0 0 8px rgba(68, 95, 128, 0.14);
+    }
+
+    .footer .brand {
+      display: block;
+      margin-bottom: 4px;
+      font-size: clamp(16px, 2.8vw, 20px);
+      letter-spacing: 0.14em;
+      color: #274B71;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.18);
+    }
+
+    .footer .contact {
+      display: block;
+      opacity: 1;
+      letter-spacing: 0.11em;
+      color: #4A3528;
+      font-size: clamp(13px, 2.3vw, 16px);
+      font-weight: 700;
+    }
+
+    .modal {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      background: var(--modal-backdrop);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      width: min(92vw, 430px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      transform: translateY(12px) scale(0.98);
+      transition: transform 0.35s ease;
+    }
+
+    .modal.open .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-image {
+      width: 100%;
+      display: block;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.34);
+      border: 1px solid rgba(255,255,255,0.18);
+      object-fit: cover;
+    }
+
+    .close-button {
+      border: 1px solid rgba(255,255,255,0.24);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-radius: 999px;
+      padding: 12px 28px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+    }
+
+    .hint-fallback {
+      position: absolute;
+      left: 50%;
+      bottom: max(34px, calc(var(--safe-bottom) + 24px));
+      transform: translateX(-50%);
+      z-index: 11;
+      color: rgba(255,255,255,0.82);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hint-fallback.visible { opacity: 1; }
+
+    @media (max-width: 640px) {
+      .text-panel { width: min(100%, 92vw); margin-top: clamp(42vh, 49vh, 54vh); transform: translateY(0); }
+      .line-1, .line-2, .father, .prayer-1, .prayer-2 { max-width: 94%; margin-left: auto; margin-right: auto; }
+      .hero-en { padding-left: 0.26em; }
+      .moment-button-wrap { right: 12px; gap: 6px; }
+      .moment-button { padding: 12px 16px; right: auto; top: auto; position: relative; }
+      .tap-guide { font-size: 10px; }
+      .footer { width: min(90vw, 420px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .line, .footer, .moment-button, .modal, .modal-card, .intro-overlay, canvas#freezeCanvas {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <video id="bgVideo" playsinline preload="auto" muted>
+      <source src="https://github.com/inviataorders/manaf/raw/refs/heads/main/v4.mp4" type="video/mp4">
+    </video>
+    <canvas id="freezeCanvas" aria-hidden="true"></canvas>
+    <div class="video-dim"></div>
+
+    <div class="content-layer">
+      <div class="text-panel" id="textPanel" aria-live="polite">
+        <div class="line line-1 arabic" data-speed="50">الحمدلله على تمام النعمه واكتمال المنه</div>
+        <div class="line line-2 arabic" data-speed="48">رزقني الله بثالث أجمل العطايا</div>
+        <div class="line hero-ar arabic" data-speed="74">مناف</div>
+        <div class="line hero-en english" data-speed="78">MANAF</div>
+        <div class="line father arabic" data-speed="50">بن أحمد الغنام</div>
+        <div class="line prayer-1 arabic" data-speed="46">اللهم أنبته نباتًا حسنًا</div>
+        <div class="line prayer-2 arabic" data-speed="46">واجعله من عبادك الصالحين</div>
+      </div>
+    </div>
+
+    <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+
+    <div class="moment-button-wrap" id="momentButtonWrap">
+      <span class="tap-guide">tap here</span>
+      <button class="moment-button" id="momentButton" type="button" aria-haspopup="dialog" aria-controls="momentModal">
+        A Precious Moment
+      </button>
+    </div>
+
+    <div class="footer" id="footer">
+      <span class="brand">An Inviata Experience</span>
+      <span class="contact">+91 9537934186</span>
+    </div>
+
+    <div class="modal" id="momentModal" role="dialog" aria-modal="true" aria-label="A Precious Moment">
+      <div class="modal-card">
+        <img class="modal-image" src="https://raw.githubusercontent.com/inviataorders/manaf/refs/heads/main/b.jpg" alt="A Precious Moment" />
+        <button class="close-button" id="closeModal" type="button">Close</button>
+      </div>
+    </div>
+
+    <div class="intro-overlay" id="introOverlay">
+      <button class="start-button" id="startButton" type="button" aria-label="Begin invitation">
+        بِسْمِ ٱللَّٰهِ
+      </button>
+    </div>
+
+    <div class="hint-fallback" id="audioHint">Tap once if audio is paused by your browser</div>
+
+    <audio id="bgAudio" preload="auto" playsinline>
+      <source src="https://github.com/inviataorders/manaf/raw/refs/heads/main/bahrain.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script>
+    (() => {
+      const video = document.getElementById('bgVideo');
+      const audio = document.getElementById('bgAudio');
+      const introOverlay = document.getElementById('introOverlay');
+      const startButton = document.getElementById('startButton');
+      const textPanel = document.getElementById('textPanel');
+      const lines = Array.from(textPanel.querySelectorAll('.line'));
+      const freezeCanvas = document.getElementById('freezeCanvas');
+      const sparkles = document.getElementById('sparkles');
+      const momentButtonWrap = document.getElementById('momentButtonWrap');
+      const momentButton = document.getElementById('momentButton');
+      const footer = document.getElementById('footer');
+      const modal = document.getElementById('momentModal');
+      const closeModal = document.getElementById('closeModal');
+      const audioHint = document.getElementById('audioHint');
+
+      const pauses = [400, 700, 200, 600, 800, 200, 0];
+      let started = false;
+      let frozen = false;
+      let typingStarted = false;
+      let sparklesStarted = false;
+      let sparkleInterval = null;
+      let activeTypeTimers = [];
+      let retryHintTimer = null;
+
+      function setViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+
+      setViewportHeight();
+      window.addEventListener('resize', setViewportHeight);
+      window.addEventListener('orientationchange', setViewportHeight);
+
+      function clearActiveTimers() {
+        activeTypeTimers.forEach(id => clearTimeout(id));
+        activeTypeTimers = [];
+      }
+
+      function wait(ms) {
+        return new Promise(resolve => {
+          const id = setTimeout(resolve, ms);
+          activeTypeTimers.push(id);
+        });
+      }
+
+      function typeLine(el, speed) {
+        return new Promise(resolve => {
+          const fullText = el.textContent;
+          const chars = Array.from(fullText);
+          el.textContent = '';
+          el.classList.add('showing');
+          let i = 0;
+
+          function step() {
+            if (i < chars.length) {
+              el.textContent += chars[i];
+              i += 1;
+              const variance = (Math.random() * 10) - 5;
+              const timer = setTimeout(step, Math.max(34, speed + variance));
+              activeTypeTimers.push(timer);
+            } else {
+              const finalize = setTimeout(() => {
+                el.classList.add('done');
+                resolve();
+              }, 20);
+              activeTypeTimers.push(finalize);
+            }
+          }
+
+          step();
+        });
+      }
+
+      async function runTypeSequence() {
+        if (typingStarted) return;
+        typingStarted = true;
+        textPanel.classList.add('visible');
+
+        for (let i = 0; i < lines.length; i += 1) {
+          const line = lines[i];
+          const speed = Number(line.dataset.speed || 50);
+          await typeLine(line, speed);
+          await wait(pauses[i] || 0);
+        }
+
+        showPostTextElements();
+      }
+
+      function showPostTextElements() {
+        if (!sparklesStarted) {
+          sparklesStarted = true;
+          startSparkles();
+        }
+        momentButtonWrap.classList.add('visible');
+        momentButton.classList.add('visible');
+        footer.classList.add('visible');
+      }
+
+      function startSparkles() {
+        const spawn = () => {
+          const el = document.createElement('span');
+          const size = 3 + Math.random() * 6;
+          const left = Math.random() * 100;
+          const duration = 4.6 + Math.random() * 3.2;
+          const delay = Math.random() * 0.35;
+          const drift = `${(Math.random() * 44) - 22}px`;
+          el.className = 'sparkle';
+          el.style.width = `${size}px`;
+          el.style.height = `${size}px`;
+          el.style.left = `${left}%`;
+          el.style.animationDuration = `${duration}s`;
+          el.style.animationDelay = `${delay}s`;
+          el.style.setProperty('--drift', drift);
+          sparkles.appendChild(el);
+          const removeTimer = setTimeout(() => el.remove(), (duration + delay + 0.3) * 1000);
+          activeTypeTimers.push(removeTimer);
+        };
+
+        for (let i = 0; i < 9; i += 1) {
+          const id = setTimeout(spawn, i * 220);
+          activeTypeTimers.push(id);
+        }
+
+        sparkleInterval = setInterval(() => {
+          const count = 1 + Math.floor(Math.random() * 2);
+          for (let i = 0; i < count; i += 1) spawn();
+        }, 520);
+      }
+
+      function sizeCanvasToVideo() {
+        const width = video.videoWidth || window.innerWidth;
+        const height = video.videoHeight || window.innerHeight;
+        freezeCanvas.width = width;
+        freezeCanvas.height = height;
+      }
+
+      function captureFrame() {
+        try {
+          sizeCanvasToVideo();
+          const ctx = freezeCanvas.getContext('2d');
+          ctx.drawImage(video, 0, 0, freezeCanvas.width, freezeCanvas.height);
+          freezeCanvas.style.opacity = '1';
+        } catch (err) {
+          freezeCanvas.style.opacity = '0';
+        }
+      }
+
+      const freezeTarget = 5;
+
+      function freezeAtSixthSecondStart() {
+        if (frozen) return;
+        frozen = true;
+        try {
+          if (Math.abs(video.currentTime - freezeTarget) > 0.06) {
+            video.currentTime = freezeTarget;
+          }
+        } catch (e) {}
+        if (video.readyState >= 2) captureFrame();
+        freezeCanvas.style.opacity = '1';
+        video.pause();
+        runTypeSequence();
+      }
+
+      function maybeFreezeByTime() {
+        if (frozen) return;
+        if (video.currentTime >= freezeTarget) {
+          freezeAtSixthSecondStart();
+        }
+      }
+
+      async function beginExperience() {
+        if (started) return;
+        started = true;
+        introOverlay.classList.add('hidden');
+        video.muted = true;
+        video.playsInline = true;
+        audio.volume = 1;
+
+        try {
+          video.currentTime = 0;
+          audio.currentTime = 0;
+        } catch (e) {}
+
+        try { await video.play(); } catch (e) {}
+        try {
+          await audio.play();
+          audioHint.classList.remove('visible');
+        } catch (e) {
+          if (retryHintTimer) clearTimeout(retryHintTimer);
+          retryHintTimer = setTimeout(() => audioHint.classList.add('visible'), 800);
+        }
+      }
+
+      startButton.addEventListener('click', beginExperience, { passive: true });
+
+      document.addEventListener('click', () => {
+        if (started && audio.paused && !modal.classList.contains('open')) {
+          audio.play().then(() => audioHint.classList.remove('visible')).catch(() => {});
+        }
+      }, { passive: true });
+
+      video.addEventListener('loadedmetadata', () => {
+        if (video.duration && video.duration < freezeTarget) {
+          // If media is shorter, freeze on its final frame once it ends.
+        }
+      });
+
+      if ('requestVideoFrameCallback' in HTMLVideoElement.prototype) {
+        const trackFrame = () => {
+          if (!started || frozen) return;
+          if (video.currentTime >= freezeTarget) {
+            freezeAtSixthSecondStart();
+            return;
+          }
+          video.requestVideoFrameCallback(trackFrame);
+        };
+        video.addEventListener('play', () => {
+          if (!frozen) video.requestVideoFrameCallback(trackFrame);
+        });
+      }
+
+      video.addEventListener('timeupdate', maybeFreezeByTime);
+      video.addEventListener('seeked', () => {
+        if (frozen || Math.abs(video.currentTime - freezeTarget) < 0.08) captureFrame();
+      });
+      video.addEventListener('ended', () => {
+        if (!frozen) freezeAtSixthSecondStart();
+      });
+
+      const sixSecondFailSafe = setInterval(() => {
+        if (started && !frozen && !video.paused && video.currentTime >= (freezeTarget - 0.04)) {
+          freezeAtSixthSecondStart();
+        }
+      }, 60);
+
+      window.addEventListener('beforeunload', () => {
+        clearInterval(sixSecondFailSafe);
+        if (sparkleInterval) clearInterval(sparkleInterval);
+        clearActiveTimers();
+      });
+
+      momentButton.addEventListener('click', () => {
+        modal.classList.add('open');
+      });
+
+      closeModal.addEventListener('click', () => {
+        modal.classList.remove('open');
+      });
+
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) modal.classList.remove('open');
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          modal.classList.remove('open');
+        }
+      });
+    })();
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
