@@ -586,7 +586,7 @@ window.addEventListener('pageshow',function(e){if(e.persisted)window.scrollTo(0,
     }
   }
   if(bgm){
-    bgm.addEventListener('ended',()=>{bgm.dataset.started='0';});
+    bgm.addEventListener('ended',()=>{bgm.currentTime=MUSIC_START_AT;bgm.play();});
   }
   function openInvitation(e){
     if(e&&typeof e.preventDefault==='function')e.preventDefault();
