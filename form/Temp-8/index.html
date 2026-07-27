@@ -434,7 +434,7 @@
     // The GitHub token itself is NEVER placed in this file — it lives only in
     // the Worker, which is the only thing allowed to talk to GitHub.
     // =====================================================================
-    const GITHUB_PROXY_URL = "PASTE_YOUR_CLOUDFLARE_WORKER_URL_HERE/upload";
+    const GITHUB_PROXY_URL = "https://order-backend.inviata-orders-in.workers.dev/upload";
     const PHOTO_UPLOAD_RETRIES = 2;
 
     function withTimeout(promise, ms, label){
