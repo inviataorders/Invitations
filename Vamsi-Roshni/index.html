@@ -14,12 +14,12 @@
 <meta name="twitter:title" content="Vamsi &amp; Roshni - Wedding Invitation" />
 <meta name="twitter:description" content="Tap to open Invitation" />
 <meta name="twitter:image" content="https://res.cloudinary.com/dx3f65i2v/image/upload/c_limit,w_1200,f_jpg,q_auto/v1784748278/file_00000000313881fa813b4edabc9de60b_rtacce.png" />
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/bg0.png" fetchpriority="high">
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/sealopening.png" fetchpriority="high">
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/Leafleft.png">
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/leadright.png">
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/Seal.png">
-<link rel="preload" as="audio" href="https://github.com/inviataorders/Vamsi-Roshni/raw/refs/heads/main/Vamsi.mp3">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/bg0.png" fetchpriority="high">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/sealopening.png" fetchpriority="high">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/Leafleft.png">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/leadright.png">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/Seal.png">
+<link rel="preload" as="audio" href="https://github.com/maryam-FOLDS/Vamsi-Roshni/raw/refs/heads/main/Vamsi.mp3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -281,38 +281,10 @@ body.intro-locked{height:100svh;overflow:hidden;}
 .fkicker{margin:0 0 12px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;color:var(--olive);text-transform:uppercase;}
 .fnames{display:flex;flex-direction:column;gap:8px;color:var(--ink);font-size:clamp(1.45rem,5.4vw,1.85rem);line-height:1.35;}
 
-/* ===== Wishes ===== */
+
+/* ===== Wishes (static gallery) ===== */
 .wishes{padding:14px 0 50px;text-align:center;}
 .wishes .heading{margin-bottom:28px;}
-.form-card{
-  width:var(--w);margin:0 auto;padding:28px 20px 24px;
-  background:rgba(255,250,242,.74);border-radius:22px;box-shadow:var(--shadow-card);text-align:left;
-}
-.form-card .copy{text-align:center;margin-bottom:16px;}
-.field{margin-bottom:14px;}
-.field label{display:block;margin:0 0 6px;font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.24em;color:var(--olive);text-transform:uppercase;}
-.field input,.field textarea{
-  width:100%;border:1px solid rgba(202,169,105,.42);background:rgba(255,255,255,.62);
-  border-radius:16px;padding:13px 15px;font-family:'Cormorant Garamond',serif;font-size:1.02rem;color:var(--ink);outline:none;
-}
-.field textarea{min-height:120px;resize:vertical;}
-.helpers{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:.92rem;color:var(--ink-soft);margin-top:6px;}
-.err{display:none;margin-top:6px;color:#9b2f48;font-size:.9rem;}
-.send{
-  display:block;min-width:200px;margin:18px auto 0;padding:13px 26px;border:0;border-radius:var(--r-pill);
-  background:linear-gradient(135deg,#caa969,#a8824a);color:#fff;
-  font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
-  box-shadow:0 10px 20px rgba(170,130,80,.26);
-}
-.send[disabled]{opacity:.6;cursor:not-allowed;}
-.toast{
-  position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);
-  padding:13px 18px;border-radius:var(--r-pill);background:rgba(110,46,59,.95);color:#fff;font-size:.95rem;
-  box-shadow:0 10px 22px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;
-  z-index:95;max-width:92vw;text-align:center;
-}
-.toast.show{opacity:1;transform:translate(-50%,0);}
-
 .gallery-w{margin-top:52px;text-align:center;}
 .gallery-w .copy{margin:0 auto 14px;}
 .stage{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:18px;}
@@ -321,7 +293,6 @@ body.intro-locked{height:100svh;overflow:hidden;}
   border-radius:22px;background:rgba(255,250,242,.78);box-shadow:var(--shadow-card);
   transition:opacity .4s ease,transform .4s ease,box-shadow .4s ease;
 }
-.wcard.flash{box-shadow:inset 0 0 0 1px rgba(202,169,105,.85),0 0 26px rgba(202,169,105,.32),0 12px 26px rgba(110,80,55,.08);}
 .wq{font-size:3rem;line-height:1;color:rgba(110,46,59,.28);margin-bottom:6px;}
 .wm{font-size:1.15rem;line-height:1.6;color:var(--wine);}
 .wn{margin-top:12px;font-size:1rem;color:var(--ink-soft);}
@@ -390,20 +361,20 @@ window.addEventListener('pageshow',function(e){if(e.persisted)window.scrollTo(0,
 </script>
 
 <section class="intro-gate" id="introGate" aria-label="Open invitation">
-  <img class="intro-gate__bg" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/bg0.png" alt="Vamsi and Roshni wedding invitation opening" fetchpriority="high" />
+  <img class="intro-gate__bg" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/bg0.png" alt="Vamsi and Roshni wedding invitation opening" fetchpriority="high" />
   <div class="intro-gate__veil" id="introFlash" aria-hidden="true"></div>
   <button class="intro-gate__btn" id="introBtn" type="button" aria-label="Open invitation">
-    <img src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/sealopening.png" alt="" aria-hidden="true" />
+    <img src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/sealopening.png" alt="" aria-hidden="true" />
   </button>
   <div class="intro-gate__cta" aria-hidden="true">Tap to Open</div>
 </section>
 <audio id="bgm" preload="auto" playsinline webkit-playsinline>
-  <source src="https://github.com/inviataorders/Vamsi-Roshni/raw/refs/heads/main/Vamsi.mp3" type="audio/mpeg" />
+  <source src="https://github.com/maryam-FOLDS/Vamsi-Roshni/raw/refs/heads/main/Vamsi.mp3" type="audio/mpeg" />
 </audio>
 
 <!-- ===== HERO (always the first screen) ===== -->
 <section class="hero" aria-label="Cover">
-  <img src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/main.png" alt="Wedding cover" />
+  <img src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/main.png" alt="Wedding cover" />
 </section>
 
 <!-- ===== Chapter 1: Journey Together ===== -->
@@ -418,10 +389,10 @@ window.addEventListener('pageshow',function(e){if(e.persisted)window.scrollTo(0,
         <p class="dt-text" id="dateTrigger" role="button" tabindex="0" aria-label="Celebrate the wedding date"><span class="dt-day">23rd</span> <span class="dt-month">August</span> <span class="dt-year">2026</span></p>
         <div class="dt-rule"></div>
       </div>
-      <img class="reveal-leaf left" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/Leafleft.png" alt="" aria-hidden="true" />
-      <img class="reveal-leaf right" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/leadright.png" alt="" aria-hidden="true" />
+      <img class="reveal-leaf left" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/Leafleft.png" alt="" aria-hidden="true" />
+      <img class="reveal-leaf right" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/leadright.png" alt="" aria-hidden="true" />
       <button class="seal-btn" id="sealBtn" aria-label="Reveal the wedding date" type="button">
-        <img src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/Seal.png" alt="Wax seal" />
+        <img src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/Seal.png" alt="Wax seal" />
       </button>
     </div>
     <div class="count" id="countWrap">
@@ -437,20 +408,20 @@ window.addEventListener('pageshow',function(e){if(e.persisted)window.scrollTo(0,
 
   <!-- Couple floating (no canvas) -->
   <section class="block couple sr" aria-label="Couple">
-    <div class="frame"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/couple.jpg" alt="Couple portrait" /></div>
+    <div class="frame"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/couple.jpg" alt="Couple portrait" /></div>
   </section>
 
   <!-- A Beautiful Pair (NO canvas) -->
   <section class="block pair" aria-label="A Beautiful Pair">
     <h2 class="ph">A Beautiful Pair</h2>
     <div class="person sr">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/groom.jpg" alt="Groom" /></div>
+      <div class="portrait"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/groom.jpg" alt="Groom" /></div>
       <div class="pl">The Groom</div>
       <div class="pn">Vamsi</div>
       <p class="pd">He's calm, observant, and creative, always embracing new adventures and believing that taking risks leads to growth. Unique in his approach, he's also responsible, dependable, and committed to everything he does.</p>
     </div>
     <div class="person sr">
-      <div class="portrait"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/bride.jpg" alt="Bride" /></div>
+      <div class="portrait"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/bride.jpg" alt="Bride" /></div>
       <div class="pl">The Bride</div>
       <div class="pn">Roshni</div>
       <p class="pd">She's little bit of chaos, a lot of energy, and never boring. She loves expressing herself, paying attention to the little details, and bringing good vibes wherever she goes.</p>
@@ -467,11 +438,11 @@ window.addEventListener('pageshow',function(e){if(e.persisted)window.scrollTo(0,
   <section class="block gallery" aria-label="Our Journey Together">
     <h2 class="heading">Our Journey Together</h2>
     <div class="jscroll" id="jScroll">
-      <button class="jcard active" type="button" data-i="0"><div class="photo"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/ig2.jpg" alt="Journey 2" /></div></button>
-      <button class="jcard near" type="button" data-i="1"><div class="photo"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/ig3.jpg" alt="Journey 3" /></div></button>
-      <button class="jcard" type="button" data-i="2"><div class="photo"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/ig4.jpg" alt="Journey 4" /></div></button>
-      <button class="jcard" type="button" data-i="3"><div class="photo"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/ig5.jpg" alt="Journey 5" /></div></button>
-      <button class="jcard" type="button" data-i="4"><div class="photo"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/ig6.jpg" alt="Journey 6" /></div></button>
+      <button class="jcard active" type="button" data-i="0"><div class="photo"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/ig2.jpg" alt="Journey 2" /></div></button>
+      <button class="jcard near" type="button" data-i="1"><div class="photo"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/ig3.jpg" alt="Journey 3" /></div></button>
+      <button class="jcard" type="button" data-i="2"><div class="photo"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/ig4.jpg" alt="Journey 4" /></div></button>
+      <button class="jcard" type="button" data-i="3"><div class="photo"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/ig5.jpg" alt="Journey 5" /></div></button>
+      <button class="jcard" type="button" data-i="4"><div class="photo"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/ig6.jpg" alt="Journey 6" /></div></button>
     </div>
   </section>
 
@@ -498,19 +469,19 @@ window.addEventListener('pageshow',function(e){if(e.persisted)window.scrollTo(0,
     <p class="kicker">Our Celebrations</p>
     <h2 class="heading">The Wedding Journey</h2>
     <div class="events">
-      <div class="event sr"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/thuru.jpg" alt="Celebration 1" /></div>
-      <div class="event sr"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/mehe.jpg" alt="Celebration 2" /></div>
-      <div class="event sr"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/hal.jpg" alt="Celebration 3" /></div>
-      <div class="event sr"><img loading="lazy" decoding="async" src="https://github.com/inviataorders/Vamsi-Roshni/blob/main/sange.png?raw=true" alt="Celebration 4" /></div>
-      <div class="event sr"><img loading="lazy" decoding="async" src="https://github.com/inviataorders/Vamsi-Roshni/blob/main/koduku.jpg?raw=true" alt="Celebration 5" /></div>
-      <div class="event sr"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/rec.png" alt="Celebration 6" /></div>
-      <div class="event sr"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/maru.png" alt="Celebration 7" /></div>
+      <div class="event sr"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/thuru.jpg" alt="Celebration 1" /></div>
+      <div class="event sr"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/mehe.jpg" alt="Celebration 2" /></div>
+      <div class="event sr"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/hal.jpg" alt="Celebration 3" /></div>
+      <div class="event sr"><img loading="lazy" decoding="async" src="https://github.com/maryam-FOLDS/Vamsi-Roshni/blob/main/sange.png?raw=true" alt="Celebration 4" /></div>
+      <div class="event sr"><img loading="lazy" decoding="async" src="https://github.com/maryam-FOLDS/Vamsi-Roshni/blob/main/koduku.jpg?raw=true" alt="Celebration 5" /></div>
+      <div class="event sr"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/rec.png" alt="Celebration 6" /></div>
+      <div class="event sr"><img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/maru.png" alt="Celebration 7" /></div>
     </div>
   </section>
 
   <!-- Awaits bridge — FULL BLEED, no canvas, edge to edge -->
   <div class="bridge sr" aria-label="Awaiting you">
-    <img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/inviataorders/Vamsi-Roshni/refs/heads/main/awaits.png" alt="Awaiting you" />
+    <img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/maryam-FOLDS/Vamsi-Roshni/refs/heads/main/awaits.png" alt="Awaiting you" />
   </div>
 </div><!-- /c-celeb -->
 
@@ -525,26 +496,6 @@ window.addEventListener('pageshow',function(e){if(e.persisted)window.scrollTo(0,
   </section>
 
   <section class="block wishes" aria-label="Wedding Wishes">
-    <h2 class="heading">Share Your Wishes</h2>
-    <div class="form-card">
-      <p class="copy">Your heartfelt wishes will become a cherished part of our wedding memories.</p>
-      <form id="wishForm" novalidate>
-        <div class="field">
-          <label for="gName">Your Name</label>
-          <input id="gName" type="text" maxlength="80" placeholder="Enter your full name" autocomplete="name" />
-          <div class="err" id="eName">Please enter your name.</div>
-        </div>
-        <div class="field">
-          <label for="gMsg">Your Wishes</label>
-          <textarea id="gMsg" maxlength="300" placeholder="Write your heartfelt wishes for the couple..."></textarea>
-          <div class="err" id="eMsg">Please write your wishes.</div>
-          <div class="err" id="eLen">Please keep your message within 300 characters.</div>
-        </div>
-        <div class="helpers"><div>Your wishes will instantly appear below.</div><div><span id="cCount">0</span>/300</div></div>
-        <button class="send" id="sendBtn" type="submit">Send Wishes</button>
-      </form>
-    </div>
-
     <div class="gallery-w">
       <h2 class="heading">Words From The Heart</h2>
       <p class="copy">Every blessing, every kind word and every heartfelt wish shared by our family and friends.</p>
@@ -598,7 +549,6 @@ window.addEventListener('pageshow',function(e){if(e.persisted)window.scrollTo(0,
   <img id="lbImg" src="" alt="Viewer" />
   <button class="lbBtn lbNext" id="lbNext" aria-label="Next">&#10095;</button>
 </div>
-<div class="toast" id="toast">Thank you! Your beautiful wishes have been shared with the couple.</div>
 
 <script>
 (()=>{
@@ -791,113 +741,100 @@ window.addEventListener('pageshow',function(e){if(e.persisted)window.scrollTo(0,
   },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
   document.querySelectorAll('.sr').forEach(el=>io.observe(el));
 
-  // ----- Wishes (Firebase) -----
-  import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js').then(async({initializeApp})=>{
-    const fs=await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
-    const {getFirestore,collection,addDoc,serverTimestamp,query,orderBy,onSnapshot}=fs;
-    const cfg={apiKey:'AIzaSyBYJhr9COR4iDjHDD1K58CMO_L3uFXMMpI',authDomain:'wishes-d91e6.firebaseapp.com',projectId:'wishes-d91e6',storageBucket:'wishes-d91e6.firebasestorage.app',messagingSenderId:'448957024524',appId:'1:448957024524:web:664d3845fc34088ccca129',measurementId:'G-2VMLM9SY00'};
-    const app=initializeApp(cfg);const db=getFirestore(app);
 
-    const wishForm=$('wishForm'),gName=$('gName'),gMsg=$('gMsg'),eName=$('eName'),eMsg=$('eMsg'),eLen=$('eLen'),
-          cCount=$('cCount'),sendBtn=$('sendBtn'),toast=$('toast'),wCard=$('wCard'),wDots=$('wDots'),wPrev=$('wPrev'),wNext=$('wNext');
-
-    const EMPTY_WISH={id:'empty',name:'',message:'Your heartfelt wishes will appear here.'};
-    let wishes=[];
-    let cur=0,timer=0,lastId='';
-
-    function toastS(m){toast.textContent=m;toast.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('show'),2600)}
-    function render(flash){
-      const item=wishes[cur]||EMPTY_WISH;
-      const hasRealWish=!!(item.name&&item.message&&item.id!=='empty');
+  // ----- Wishes (static text, embedded) -----
+  const WISHES = [
+  {
+    "name": "test guess",
+    "message": "Congratulations! Wishing you both a lifetime of happiness."
+  },
+  {
+    "name": "S P Prasad",
+    "message": "Wishing you both a lifetime filled with love, laughter, happiness, and endless blessings. May your journey together be filled with beautiful memories, unwavering support, and cherished moments. Congratulations on your wedding! 💐❤️ Best wishes for a joyful a"
+  },
+  {
+    "name": "Narotthama Reddy, Puthalapattu",
+    "message": "All the best in your new journey.\nWishing very successful and healthy marriage life"
+  },
+  {
+    "name": "Rama Subhas Reddy",
+    "message": "Congratulations to  would be couple my wishes and blessings are always with both of you"
+  },
+  {
+    "name": "Ganesh Nalla",
+    "message": "Congratulations guys ❤️"
+  },
+  {
+    "name": "Manjula Devi and seeta rama swamy.",
+    "message": "Congratulations both of. may god bless and best of luck yours new journey."
+  },
+  {
+    "name": "Narendranath reddy",
+    "message": "In advance happy married life wishes to both of you! May your journey together be filled with love, happiness, good health, and countless beautiful memories. Wishing you a lifetime of togetherness and joy."
+  },
+  {
+    "name": "~test",
+    "message": "Congratulations guys!!! So happy for you!"
+  },
+  {
+    "name": "T dhanamjaya reddy sujatha",
+    "message": "Mee pelli pachhani toranalu laga meru kuda pachha vundala ni aa venkateswara swamy meku bless evalli."
+  },
+  {
+    "name": "BABU GOPINATH",
+    "message": "ADVANCE HAPPY MARRIED LIFE"
+  },
+  {
+    "name": "Rishitha Badiginchala",
+    "message": "Wishing you all the happiness as you step into this beautiful new chapter of your life. ❤️ I hope this journey brings you lots of love, laughter and wonderful memories. So happy for you and wishing you both a beautiful life together. Can’t wait to see you start this new journey. ❤️✨"
+  },
+  {
+    "name": "Vishal",
+    "message": "Congratulations, ra wishing you both a lifetime love, happiness, laughter, and countless beautiful memories together. May this new chapter of your life be even more amazing than you imagined. Stay blessed and keep smiling always! 🥂✨\n\nHappy Married Life! ❤️"
+  },
+  {
+    "name": "Nayana Koya",
+    "message": "Hope you have a best life together ❤️"
+  },
+  {
+    "name": "BHAAI",
+    "message": "💐 Heartiest Congratulations on Your Marriage! 💐\n\nWishing you both a beautiful journey filled with endless love, happiness, understanding, and togetherness. May this new chapter of your lives bring you countless beautiful memories, unforgettable moments, and a lifetime of reasons to smile."
+  }
+];
+  (function(){
+    const wCard=$('wCard'),wDots=$('wDots'),wPrev=$('wPrev'),wNext=$('wNext');
+    if(!wCard)return;
+    const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    let cur=0,timer=0;
+    function render(){
+      const it=WISHES[cur];
       wCard.style.opacity='0';wCard.style.transform='translateY(6px) scale(.99)';
       setTimeout(()=>{
-        wCard.innerHTML=hasRealWish
-          ? '<div class="wq">❝</div><div class="wm">'+(item.message||'')+'</div><div class="wn">— '+(item.name||'Friend').replace(/^—\s*/,'')+'</div>'
-          : '<div class="wm">'+(item.message||'')+'</div>';
+        wCard.innerHTML='<div class="wq">❝</div><div class="wm">'+esc(it.message).replace(/\n/g,'<br>')+'</div><div class="wn">— '+esc(it.name)+'</div>';
         wCard.style.opacity='1';wCard.style.transform='translateY(0) scale(1)';
-        wCard.classList.toggle('flash',!!flash&&hasRealWish);
-        if(flash&&hasRealWish)setTimeout(()=>wCard.classList.remove('flash'),1800);
       },160);
       wDots.innerHTML='';
-      if(wishes.length<=1)return;
-      for(let i=0;i<wishes.length;i++){
+      if(WISHES.length<=1)return;
+      for(let i=0;i<WISHES.length;i++){
         const d=document.createElement('button');
         d.type='button';d.className='wdot'+(i===cur?' active':'');d.setAttribute('aria-label','Wish '+(i+1));
-        d.addEventListener('click',()=>{cur=i;render(false);restart()});
+        d.addEventListener('click',()=>{cur=i;render();restart()});
         wDots.appendChild(d);
       }
     }
-    function step(n){
-      if(!wishes.length)return;
-      cur=(cur+n+wishes.length)%wishes.length;
-      render(false);
-    }
-    function restart(){
-      clearInterval(timer);
-      if(wishes.length<=1)return;
-      timer=setInterval(()=>step(1),6000);
-    }
+    function step(n){cur=(cur+n+WISHES.length)%WISHES.length;render();}
+    function restart(){clearInterval(timer);if(WISHES.length<=1)return;timer=setInterval(()=>step(1),6000);}
     wPrev.addEventListener('click',()=>{step(-1);restart()});
     wNext.addEventListener('click',()=>{step(1);restart()});
     let sx=0;
     wCard.addEventListener('touchstart',e=>sx=e.changedTouches[0].clientX,{passive:true});
     wCard.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){step(dx>0?-1:1);restart()}},{passive:true});
-    document.addEventListener('keydown',e=>{
-      if(lb.classList.contains('open'))return;
-      if(e.target&&(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'))return;
-      if(e.key==='ArrowLeft'){step(-1);restart()}
-      if(e.key==='ArrowRight'){step(1);restart()}
-    });
+    render();
+    restart();
+  })();
 
-    gMsg.addEventListener('input',()=>{cCount.textContent=gMsg.value.length;if(gMsg.value.length<=300)eLen.style.display='none'});
-    gName.addEventListener('input',()=>eName.style.display='none');
-    gMsg.addEventListener('input',()=>eMsg.style.display='none');
-
-    function valid(){
-      const n=gName.value.trim(),m=gMsg.value.trim(),l=m.length;
-      eName.style.display=n?'none':'block';
-      eMsg.style.display=m?'none':'block';
-      eLen.style.display=l<=300?'none':'block';
-      return !!n&&!!m&&l<=300;
-    }
-
-    wishForm.addEventListener('submit',async e=>{
-      e.preventDefault();if(sendBtn.disabled||!valid())return;
-      sendBtn.disabled=true;const prev=sendBtn.textContent;sendBtn.textContent='Sending...';
-      try{
-        const ref=await addDoc(collection(db,'wishes'),{name:gName.value.trim(),message:gMsg.value.trim(),timestamp:serverTimestamp()});
-        lastId=ref.id;wishForm.reset();cCount.textContent='0';
-        toastS('Thank you! Your beautiful wishes have been shared with the couple.');
-      }catch(_){
-        toastS('Something went wrong while sending your wishes. Please try again.');
-      }finally{
-        sendBtn.disabled=false;sendBtn.textContent=prev;
-      }
-    });
-
-    try{
-      const q=query(collection(db,'wishes'),orderBy('timestamp','desc'));
-      onSnapshot(q,snap=>{
-        const data=snap.docs
-          .map(d=>({id:d.id,...d.data()}))
-          .filter(x=>x.message&&x.name)
-          .filter(x=>!(/\btest\b/i.test(String(x.name))||/\btest\b/i.test(String(x.message))));
-        wishes=data.length?data:[EMPTY_WISH];
-        if(lastId){
-          const i=wishes.findIndex(w=>w.id===lastId);cur=i>-1?i:0;
-          document.querySelector('.gallery-w')?.scrollIntoView({behavior:'smooth',block:'start'});
-          render(true);lastId='';
-        }else{if(cur>=wishes.length)cur=0;render(false)}
-        restart();
-      },err=>{console.warn(err);render(false);restart()});
-    }catch(err){console.warn(err);render(false);restart()}
-    render(false);restart();
-  });
 })();
 </script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
 </body>
 </html>
