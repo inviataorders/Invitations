@@ -1,8 +1,6 @@
 {
+  "trailingSlash": true,
   "rewrites": [
-    {
-      "source": "/:customer/",
-      "destination": "/:customer/index.html"
-    }
+    { "source": "/:folder/", "destination": "/:folder/index.html" }
   ]
 }
