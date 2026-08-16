@@ -8,12 +8,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Wedding Invitation | Prawin &amp; Madhu" />
   <meta property="og:description" content="Tap to Open Your Invite" />
-  <meta property="og:image" content="https://res.cloudinary.com/dx3f65i2v/image/upload/c_limit,w_1200,f_jpg,q_auto/v1786853382/openg_ncuitm.png" />
+  <meta property="og:image" content="https://res.cloudinary.com/dx3f65i2v/image/upload/c_limit,w_1200,f_jpg,q_auto/v1786864614/Picsart_26-08-16_12-43-49-949_sulsl3.jpg" />
   <meta property="og:image:alt" content="Wedding Invitation | Prawin &amp; Madhu" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Wedding Invitation | Prawin &amp; Madhu" />
   <meta name="twitter:description" content="Tap to Open Your Invite" />
-  <meta name="twitter:image" content="https://res.cloudinary.com/dx3f65i2v/image/upload/c_limit,w_1200,f_jpg,q_auto/v1786853382/openg_ncuitm.png" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/dx3f65i2v/image/upload/c_limit,w_1200,f_jpg,q_auto/v1786864614/Picsart_26-08-16_12-43-49-949_sulsl3.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Italianno&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
@@ -388,31 +388,29 @@
     .memories-strip {
       position: relative;
       z-index: 1;
+      width: 100%;
+      overflow: hidden;
+      padding: 10px 0 14px;
+      mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    }
+    .memories-track {
       display: flex;
       gap: 16px;
-      overflow-x: auto;
-      overflow-y: hidden;
-      padding: 10px 2px 14px;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(122, 36, 75, 0.55) rgba(250, 240, 225, 0.25);
+      width: max-content;
+      animation: memReel 32s linear infinite;
+      will-change: transform;
     }
-    .memories-strip::-webkit-scrollbar {
-      height: 8px;
+    .memories-section:hover .memories-track,
+    .memories-section:focus-within .memories-track {
+      animation-play-state: paused;
     }
-    .memories-strip::-webkit-scrollbar-track {
-      background: rgba(250, 240, 225, 0.22);
-      border-radius: 999px;
-    }
-    .memories-strip::-webkit-scrollbar-thumb {
-      background: linear-gradient(90deg, rgba(122, 36, 75, 0.92), rgba(170, 99, 127, 0.92));
-      border-radius: 999px;
+    @keyframes memReel {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
     }
     .memory-card {
-      flex: 0 0 82%;
-      scroll-snap-align: center;
+      flex: 0 0 clamp(220px, 32vw, 360px);
       border: none;
       padding: 0;
       background: transparent;
@@ -948,15 +946,38 @@
         </div>
 
         <div class="memories-strip" id="memoriesStrip">
-          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m1_mstu1f.jpg" aria-label="Open memory 1">
-            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m1_mstu1f.jpg" alt="Wedding memory 1">
+          <div class="memories-track" id="memoriesTrack">
+          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m1_mstu1f.jpg" aria-label="Open memory 1 one">
+            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m1_mstu1f.jpg" alt="Wedding memory 1 one">
           </button>
-          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m3_tzhlga.jpg" aria-label="Open memory 2">
-            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m3_tzhlga.jpg" alt="Wedding memory 2">
+          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m3_tzhlga.jpg" aria-label="Open memory 2 one">
+            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m3_tzhlga.jpg" alt="Wedding memory 2 one">
           </button>
-          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m4_awlpxq.jpg" aria-label="Open memory 3">
-            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m4_awlpxq.jpg" alt="Wedding memory 3">
+          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m4_awlpxq.jpg" aria-label="Open memory 3 one">
+            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m4_awlpxq.jpg" alt="Wedding memory 3 one">
           </button>
+          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786864547/IMG-20260816-WA0010_actrhu.jpg" aria-label="Open memory 4 one">
+            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786864547/IMG-20260816-WA0010_actrhu.jpg" alt="Wedding memory 4 one">
+          </button>
+          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786864571/IMG-20260816-WA0009_istaqp.jpg" aria-label="Open memory 5 one">
+            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786864571/IMG-20260816-WA0009_istaqp.jpg" alt="Wedding memory 5 one">
+          </button>
+          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m1_mstu1f.jpg" aria-label="Open memory 1 two">
+            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m1_mstu1f.jpg" alt="Wedding memory 1 two">
+          </button>
+          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m3_tzhlga.jpg" aria-label="Open memory 2 two">
+            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m3_tzhlga.jpg" alt="Wedding memory 2 two">
+          </button>
+          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m4_awlpxq.jpg" aria-label="Open memory 3 two">
+            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786812336/m4_awlpxq.jpg" alt="Wedding memory 3 two">
+          </button>
+          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786864547/IMG-20260816-WA0010_actrhu.jpg" aria-label="Open memory 4 two">
+            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786864547/IMG-20260816-WA0010_actrhu.jpg" alt="Wedding memory 4 two">
+          </button>
+          <button class="memory-card" type="button" data-full="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786864571/IMG-20260816-WA0009_istaqp.jpg" aria-label="Open memory 5 two">
+            <img src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786864571/IMG-20260816-WA0009_istaqp.jpg" alt="Wedding memory 5 two">
+          </button>
+          </div>
         </div>
       </div>
     </div>
