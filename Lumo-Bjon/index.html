@@ -22,7 +22,7 @@
 <link as="image" href="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786941175/envlumo_uk4pki.png" rel="preload"/>
 <link as="image" href="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786941380/imagecardlumo_ftbent.png" rel="preload"/>
 <link as="image" href="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786941168/imagelast_ocj4im.png" rel="preload"/>
-<title>Wedding Invitation | Lumo &amp; Bjon</title>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet"/><title>Wedding Invitation | Lumo &amp; Bjon</title>
 <style>
     :root{
       --sage:#86a8c7;
@@ -589,6 +589,201 @@
       #hero .hero-title{font-size:clamp(2.75rem,11vw,4.4rem);}
       #hero .lux-small{letter-spacing:.16em;font-size:clamp(.8rem,3.3vw,.96rem);}
     }
+
+    /* ================= REFINED EDITORIAL PASS ================= */
+    :root{
+      --font-serif:'Cormorant Garamond','Didot',Georgia,'Times New Roman',serif;
+      --font-sans:'Jost','Avenir Next','Segoe UI',sans-serif;
+      --ink:#3f5c78;
+      --ink-soft:#5b7590;
+      --ink-faint:#7e94a9;
+      --sage-floral:#8ba08c;
+    }
+
+    /* ---- Page 1 of interface 2 : Lumo & Bjon in a readable high-contrast serif ---- */
+    #open-section .name-stack{position:relative;z-index:6}
+    #open-section .couple-name{
+      font-family:var(--font-serif);
+      font-weight:600;
+      font-size:clamp(3.5rem,9.6vw,6.1rem);
+      line-height:.94;
+      letter-spacing:.05em;
+      color:#33516d;
+      background:none;
+      -webkit-background-clip:initial;
+      background-clip:initial;
+      text-shadow:0 1px 2px rgba(255,255,255,.95),0 3px 16px rgba(255,255,255,.6),0 8px 22px rgba(76,104,131,.14);
+    }
+    #open-section .couple-name.delay-1{
+      animation:luxReveal 1.15s cubic-bezier(.2,.75,.2,1) .18s forwards,
+                glowPulse 6s ease-in-out 3s infinite;
+    }
+    #open-section .couple-name.delay-2{
+      animation:luxReveal 1.15s cubic-bezier(.2,.75,.2,1) .36s forwards,
+                glowPulse 6s ease-in-out 3.3s infinite;
+    }
+    #open-section .amp{
+      font-family:var(--font-serif);
+      font-style:italic;
+      font-weight:500;
+      font-size:clamp(1.9rem,4.6vw,2.7rem);
+      line-height:1;
+      color:#7e94a9;
+      background:none;
+      -webkit-background-clip:initial;
+      background-clip:initial;
+      text-shadow:0 1px 8px rgba(255,255,255,.8);
+    }
+    #open-section .married-heading{
+      font-family:var(--font-sans);
+      font-weight:400;
+      letter-spacing:.3em;
+      text-transform:uppercase;
+      color:#5b7590;
+      animation:luxReveal 1.15s cubic-bezier(.2,.75,.2,1) .56s forwards,
+                softGlow 5.5s ease-in-out 2.8s infinite;
+    }
+
+    /* falling petals */
+    .petals{position:absolute;inset:0;pointer-events:none;z-index:4;overflow:hidden}
+    .petal{position:absolute;top:-8vh;border-radius:100% 2px 100% 2px;opacity:0;background:linear-gradient(140deg,rgba(255,255,255,.95),rgba(208,228,243,.55));box-shadow:0 2px 8px rgba(90,125,155,.16);animation:petalFall linear infinite}
+    .petal.p1{left:6%;width:11px;height:13px;animation-duration:14s;animation-delay:-3s}
+    .petal.p2{left:22%;width:14px;height:16px;animation-duration:17s;animation-delay:-7s}
+    .petal.p3{left:44%;width:10px;height:12px;animation-duration:15s;animation-delay:-10s}
+    .petal.p4{left:61%;width:15px;height:18px;animation-duration:18s;animation-delay:-5s}
+    .petal.p5{left:77%;width:12px;height:14px;animation-duration:14.5s;animation-delay:-12s}
+    .petal.p6{left:91%;width:13px;height:15px;animation-duration:16s;animation-delay:-8s}
+    @keyframes petalFall{
+      0%{transform:translateY(-8vh) translateX(0) rotate(0deg);opacity:0}
+      7%{opacity:.8}
+      100%{transform:translateY(115vh) translateX(4vw) rotate(300deg);opacity:0}
+    }
+
+    /* countdown floats once revealed */
+    #countdownWrap.visible .time-box{animation:countFloat 3.4s ease-in-out infinite}
+    #countdownWrap.visible .time-box:nth-child(2){animation-delay:.4s}
+    #countdownWrap.visible .time-box:nth-child(3){animation-delay:.8s}
+    #countdownWrap.visible .time-box:nth-child(4){animation-delay:1.2s}
+    @keyframes countFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+    /* ---- Page 2 : refined, airy invitation panel (wording untouched) ---- */
+    #families{background-color:#eef4f9}
+    #families::after{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(180deg,rgba(248,251,254,.4) 0%,rgba(248,251,254,.16) 45%,rgba(244,249,253,.36) 100%);
+    }
+    #families .invite-column{
+      width:min(680px,100%);
+      gap:5px;
+      padding:clamp(36px,5.5vw,64px) clamp(24px,4vw,46px);
+      border-radius:20px;
+      background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(252,254,255,.46));
+      border:1px solid rgba(122,150,178,.2);
+      box-shadow:0 26px 64px rgba(76,104,131,.1), inset 0 0 0 1px rgba(255,255,255,.5);
+      -webkit-backdrop-filter:blur(5px);
+      backdrop-filter:blur(5px);
+      transform:translateY(-9vh) scale(.97);
+    }
+    #families .invite-gap{height:clamp(10px,1.6vh,16px)}
+    #families .invite-gap.small{height:clamp(8px,1.2vh,12px)}
+    .invite-rule{
+      width:min(64px,24%);height:1px;margin:10px auto;position:relative;
+      background:linear-gradient(90deg,transparent,rgba(124,150,180,.6),transparent);
+    }
+    .invite-rule::before,.invite-rule::after{
+      content:"";position:absolute;top:50%;width:4px;height:4px;border-radius:50%;
+      background:rgba(124,150,180,.6);transform:translateY(-50%);
+    }
+    .invite-rule::before{left:-2px}
+    .invite-rule::after{right:-2px}
+    #families .inv-note{
+      font-family:var(--font-sans);font-weight:400;
+      font-size:clamp(.62rem,1.1vw,.76rem);
+      letter-spacing:.34em;text-transform:uppercase;
+      color:var(--ink-faint);line-height:1.7;
+    }
+    #families .sig-name{
+      font-family:var(--font-serif);font-weight:600;
+      font-size:clamp(2.55rem,6vw,3.85rem);
+      letter-spacing:.07em;line-height:.95;
+      color:var(--ink);text-shadow:0 1px 0 rgba(255,255,255,.85);
+    }
+    #families .with-script{
+      font-family:var(--font-serif);font-style:italic;font-weight:500;
+      font-size:clamp(1.5rem,2.9vw,2rem);letter-spacing:.02em;
+      color:var(--sage-floral);margin:2px 0;
+    }
+    #families .family-line{
+      font-family:var(--font-serif);font-weight:500;
+      font-size:clamp(.95rem,1.75vw,1.16rem);
+      letter-spacing:.11em;text-transform:uppercase;
+      color:var(--ink-soft);line-height:1.55;
+    }
+    #families .inv-kicker{
+      font-family:var(--font-serif);font-weight:600;
+      font-size:clamp(.92rem,1.7vw,1.12rem);
+      letter-spacing:.3em;text-transform:uppercase;
+      color:var(--sage-floral);margin-top:6px;
+    }
+    #families .inv-maincaps{
+      font-family:var(--font-serif);font-weight:600;
+      font-size:clamp(1rem,1.95vw,1.32rem);
+      letter-spacing:.2em;text-transform:uppercase;
+      color:var(--ink);line-height:1.3;text-shadow:0 1px 0 rgba(255,255,255,.7);
+    }
+    .detail-line{
+      font-family:var(--font-sans);font-weight:300;
+      font-size:clamp(.8rem,1.4vw,.95rem);
+      letter-spacing:.16em;text-transform:uppercase;
+      color:var(--ink-soft);line-height:1.5;
+    }
+    .detail-line.italic{
+      font-family:var(--font-serif);font-style:italic;font-weight:500;
+      text-transform:none;letter-spacing:.05em;
+      font-size:clamp(.95rem,1.7vw,1.12rem);color:var(--ink-faint);
+    }
+
+    /* schedule button micro-interaction */
+    .foil-button{transition:transform .4s cubic-bezier(.2,.75,.2,1), box-shadow .4s ease}
+    .foil-button:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(76,104,131,.24)}
+
+    /* ---- Footer ---- */
+    #final-page .content{align-items:flex-end;justify-content:center}
+    .credit-footer{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+      width:min(100%,560px);margin:0 auto;padding:9px 20px 10px;
+      background:linear-gradient(180deg,rgba(255,255,255,.86),rgba(240,247,252,.72));
+      -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(122,150,178,.24);border-bottom:none;
+      border-radius:24px 24px 0 0;
+      color:var(--ink-soft);
+      box-shadow:0 -18px 48px rgba(76,104,131,.14), inset 0 1px 0 rgba(255,255,255,.7);
+    }
+    .credit-kicker{font-family:var(--font-sans);font-size:.52rem;line-height:1.3;letter-spacing:.4em;text-transform:uppercase;color:var(--ink-faint)}
+    .credit-line{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;line-height:1.2}
+    .credit-brand{font-family:var(--font-serif);font-weight:600;font-size:clamp(.95rem,2.2vw,1.15rem);letter-spacing:.02em;color:var(--ink)}
+    .credit-sep{color:var(--sage-floral);font-size:.75rem;font-weight:300}
+    .credit-phone{font-family:var(--font-sans);font-weight:400;font-size:.8rem;letter-spacing:.06em;color:var(--ink-soft);text-decoration:none;transition:color .3s ease}
+    .credit-phone:hover{color:var(--sage-floral)}
+    .credit-heart{color:var(--sage-floral);font-size:.6rem;line-height:1;animation:heartBeat 3.4s ease-in-out infinite}
+    @keyframes heartBeat{0%,100%{transform:scale(1);opacity:.75}12%{transform:scale(1.25);opacity:1}24%{transform:scale(1)}36%{transform:scale(1.15);opacity:.95}50%{transform:scale(1)}}
+
+    @keyframes glowPulse{
+      0%,100%{text-shadow:0 1px 2px rgba(255,255,255,.95),0 3px 16px rgba(255,255,255,.55),0 8px 22px rgba(76,104,131,.12)}
+      50%{text-shadow:0 1px 2px rgba(255,255,255,1),0 3px 26px rgba(255,255,255,.85),0 10px 30px rgba(76,104,131,.2)}
+    }
+    @keyframes softGlow{
+      0%,100%{box-shadow:0 10px 26px rgba(92,121,151,.1), inset 0 0 0 1px rgba(255,255,255,.5)}
+      50%{box-shadow:0 12px 32px rgba(92,121,151,.2), inset 0 0 0 1px rgba(255,255,255,.65), 0 0 0 6px rgba(255,255,255,.14)}
+    }
+
+    @media (max-width:720px){
+      #open-section .couple-name{font-size:clamp(2.7rem,12vw,4.3rem)}
+      #families .invite-column{transform:translateY(-7vh) scale(.96);padding:28px 18px 34px}
+      #families .sig-name{font-size:clamp(2.1rem,9vw,3rem)}
+      .invite-rule{margin:8px auto}
+    }
 </style>
 </head>
 <body class="preopen">
@@ -600,12 +795,13 @@
 <div class="content center"><div class="hero-envelope-wrap animate in"><img alt="Envelope invitation" class="hero-envelope" decoding="async" fetchpriority="high" id="envelopeTrigger" src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1786941175/envlumo_uk4pki.png"/></div><div class="copy"><h1 class="hero-title animate in delay-1">You're Invited</h1><div class="lux-small animate in delay-2">Tap to Open Invitation</div></div></div>
 </section>
 <div id="scrollSite">
-<section class="panel" id="open-section" style="--bg-width:852;--bg-height:1846;background-image:url('https://res.cloudinary.com/dx3f65i2v/image/upload/v1786941175/img2lumo_s14krb.png')">
+<section class="panel" id="open-section" style="--bg-width:853;--bg-height:1844;background-image:url('https://res.cloudinary.com/dx3f65i2v/image/upload/v1787048565/lumopg1_ux66ey.png')">
 <div aria-hidden="true" class="birds">
 <span class="bird b1">✦</span>
 <span class="bird b2">✦</span>
 <span class="bird b3">✦</span>
 </div>
+<span aria-hidden="true" class="petals"><i class="petal p1"></i><i class="petal p2"></i><i class="petal p3"></i><i class="petal p4"></i><i class="petal p5"></i><i class="petal p6"></i></span>
 <div class="content center">
 <div class="name-stack">
 <div class="couple-name animate delay-1">Lumo</div>
@@ -633,7 +829,7 @@
 </div>
 </section>
 <section class="panel" id="families" style="--bg-width:853;--bg-height:1844;background-image:url('https://res.cloudinary.com/dx3f65i2v/image/upload/v1786941172/image3lumo_cwm3bd.png')">
-<div class="content"><div class="invite-column"><div class="invite-line inv-note animate">IN CELEBRATION OF THE LOVE AND FRIENDSHIP</div><div class="invite-line inv-note animate">WE SHARE WITH YOU</div><div class="invite-gap"></div><div class="invite-line sig-name animate delay-1">LINO ACHUMI</div><div class="invite-line with-script animate delay-1">&amp;</div><div class="invite-line sig-name animate delay-1">BJORN MONNIER</div><div class="invite-gap"></div><div class="invite-line inv-maincaps animate delay-2">JOYFULLY REQUEST THE HONOUR OF YOUR PRESENCE</div><div class="invite-line family-line animate delay-2">TO WITNESS OUR VOWS, SHARE IN OUR JOY, AND BLESS</div><div class="invite-line family-line animate delay-2">THE BEGINNING OF OUR FOREVER.</div><div class="invite-gap"></div><div class="invite-line inv-kicker animate delay-3">NUPTIAL MASS</div><div class="invite-line inv-maincaps animate delay-3">DECEMBER 28, 2026</div><div class="invite-line family-line animate delay-3">MONDAY — 4:00 PM</div><div class="invite-line inv-maincaps animate delay-4">ST. MARY'S CHURCH</div><div class="invite-line family-line animate delay-4">RIPPON STREET : KOLKATA</div><div class="invite-gap"></div><div class="invite-line family-line animate delay-4">Reception to follow at</div><div class="invite-line inv-maincaps animate delay-4">JAMUNA BANQUET</div></div></div>
+<div class="content"><div class="invite-column"><div class="invite-line inv-note animate">IN CELEBRATION OF THE LOVE AND FRIENDSHIP</div><div class="invite-line inv-note animate">WE SHARE WITH YOU</div><div class="invite-rule animate" aria-hidden="true"></div><div class="invite-line sig-name animate delay-1">LINO ACHUMI</div><div class="invite-line with-script animate delay-1">&amp;</div><div class="invite-line sig-name animate delay-1">BJORN MONNIER</div><div class="invite-rule animate delay-1" aria-hidden="true"></div><div class="invite-line family-line animate delay-2">JOYFULLY REQUEST THE HONOUR OF YOUR PRESENCE</div><div class="invite-line family-line animate delay-2">TO WITNESS OUR VOWS, SHARE IN OUR JOY, AND BLESS</div><div class="invite-line family-line animate delay-2">THE BEGINNING OF OUR FOREVER.</div><div class="invite-gap"></div><div class="invite-line inv-kicker animate delay-3">NUPTIAL MASS</div><div class="invite-line inv-maincaps animate delay-3">DECEMBER 28, 2026</div><div class="invite-line detail-line animate delay-3">MONDAY — 4:00 PM</div><div class="invite-line inv-maincaps animate delay-4">ST. MARY'S CHURCH</div><div class="invite-line detail-line animate delay-4">RIPPON STREET : KOLKATA</div><div class="invite-gap small"></div><div class="invite-line detail-line italic animate delay-4">Reception to follow at</div><div class="invite-line inv-maincaps animate delay-4">JAMUNA BANQUET</div></div></div>
 </section>
 <section class="panel" id="direction-1" style="--bg-width:1220;--bg-height:2643;background-image:url('https://res.cloudinary.com/dx3f65i2v/image/upload/v1786941172/image4lumo_ihado6.png')">
 <div class="content center">
@@ -642,9 +838,13 @@
 <a class="foil-button animate delay-2" href="https://maps.app.goo.gl/oSjyLZefogrJyPW1A" rel="noopener noreferrer" target="_blank"><span>View Direction</span></a>
 </div>
 </section>
-<section class="panel" id="final-page" style="--bg-width:740;--bg-height:1600;background-image:url('https://res.cloudinary.com/dx3f65i2v/image/upload/v1786941168/imagelast_ocj4im.png')">
+<section class="panel" id="final-page" style="--bg-width:740;--bg-height:1600;background-image:url('https://res.cloudinary.com/dx3f65i2v/image/upload/v1787048107/Lumolast_a5bsjk.jpg')">
 <div class="content">
-<div class="credit-footer">Made by @themaryam.in | +91 7359033087</div>
+<div class="credit-footer animate">
+<span class="credit-kicker">Made by</span>
+<span class="credit-line"><span class="credit-brand">@themaryam.in</span><span class="credit-sep">|</span><a class="credit-phone" href="tel:+917359033087">+91 7359033087</a></span>
+<span class="credit-heart" aria-hidden="true">✦</span>
+</div>
 </div>
 </section>
 </div>
@@ -922,6 +1122,7 @@
       }
     }
   </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
 </body>
 </html>
