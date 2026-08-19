@@ -1015,6 +1015,9 @@
       .ringbox-wrap .ring-animated { width: min(30vw, 128px); top: 40%; }
       .invite-footer { margin-top: 0.05rem; padding: 0.62rem 0.72rem; }
     }
+    .line-red {
+  color: #b30000;
+}
   </style>
 </head>
 <body class="lock-scroll">
@@ -1159,7 +1162,7 @@ Gate No. 2</div>
     let invitationRevealed = false;
 
     const lines = [
-      { text: 'Om Shri Ganeshaya Namah', className: 'line-blessing', speed: 30, pause: 180 },
+      { text: { text: 'Om Shri Ganeshaya Namah', className: 'line-red', speed: 30, pause: 180 },,
       { text: 'With the divine blessings of Shri Nandkishwar Maharaj Ji', className: 'line-blessing', speed: 28, pause: 240 },
       { text: 'Smt. Khema Raina & Sh. S. K Raina cordially invite you to grace the engagement ceremony of their beloved granddaughter', className: 'line-invite', speed: 22, pause: 280 },
       { text: 'Aarya Raina', className: 'line-name', speed: 74, pause: 180 },
