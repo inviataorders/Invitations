@@ -14,6 +14,7 @@
   <meta name="twitter:image" content="https://res.cloudinary.com/dx3f65i2v/image/upload/c_limit,w_1200,f_jpg,q_auto/v1786902392/AA_it4imt.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
   <style>
     @font-face {
@@ -41,7 +42,11 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
     body {
       margin: 0;
       padding: 0;
@@ -50,6 +55,7 @@
       font-family: 'Cormorant Garamond', serif;
       overflow-x: hidden;
       width: 100%;
+      font-synthesis: none;
     }
     body.lock-scroll { overflow: hidden; height: 100vh; }
 
@@ -151,8 +157,8 @@
       width: min(88vw, 430px);
       padding: 28px 24px 24px;
       border-radius: 28px;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.24);
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(255,255,255,0.75);
       box-shadow: 0 18px 45px rgba(0,0,0,0.20);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
@@ -166,7 +172,9 @@
       text-transform: uppercase;
       font-size: 0.86rem;
       margin-bottom: 14px;
-      opacity: 0.88;
+      color: #131313;
+      opacity: 1;
+      font-weight: 600;
     }
 
     .open-card-text {
@@ -178,11 +186,12 @@
 
     .open-button {
       appearance: none;
-      border: 1px solid rgba(255,255,255,0.55);
-      background: rgba(255,255,255,0.14);
-      color: #fff;
+      border: 1px solid rgba(0,0,0,0.22);
+      background: rgba(255,255,255,0.86);
+      color: #131313;
       font-family: 'Cinzel', serif;
       font-size: 0.96rem;
+      font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       padding: 15px 28px;
@@ -197,7 +206,7 @@
     .open-button:hover,
     .open-button:active {
       transform: translateY(-2px);
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,1);
       box-shadow: 0 14px 28px rgba(0,0,0,0.22);
     }
 
@@ -277,7 +286,7 @@
     #page1 .page-content {
       width: min(92vw, 760px);
       margin: 0 auto;
-      padding: 2vh 4vw 6vh;
+      padding: clamp(3vh, 4.5vh, 5.5vh) max(4vw, env(safe-area-inset-left)) 6vh max(4vw, env(safe-area-inset-right));
       display: flex; flex-direction: column; gap: 1rem;
       align-items: center; justify-content: center;
       overflow: visible;
@@ -287,7 +296,7 @@
     #page2 .page-content {
       width: min(94vw, 720px);
       margin: 0 auto;
-      padding: 3.2vh 4vw;
+      padding: 3.2vh max(4vw, env(safe-area-inset-left)) 3.2vh max(4vw, env(safe-area-inset-right));
       display: flex; flex-direction: column; gap: 0.6rem;
       align-items: center; justify-content: center;
       text-align: center;
@@ -298,7 +307,7 @@
     #page3 .page-content {
       width: min(94vw, 560px);
       margin: 0 auto;
-      padding: 6vh 4vw 3vh;
+      padding: 6vh max(4vw, env(safe-area-inset-left)) 3vh max(4vw, env(safe-area-inset-right));
       display: flex; flex-direction: column; gap: 0.65rem;
       align-items: center; justify-content: center;
       text-align: center;
@@ -350,6 +359,10 @@
       text-shadow: 0 1px 1px rgba(255,255,255,0.35);
     }
 
+    .editorial-block .type-line:first-child {
+      margin-top: 0.45rem;
+    }
+
     .type-line {
       min-height: 1.35em;
       opacity: 0;
@@ -370,22 +383,26 @@
     .line-blessing {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.05rem, 3.2vw, 1.44rem);
-      color: #6d7862;
+      color: #4a5340;
+      font-weight: 600;
       margin-bottom: 1rem;
       letter-spacing: 0.01em;
+      text-wrap: balance;
     }
 
     .line-invite {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
+      font-weight: 600;
       font-size: clamp(1.12rem, 3.35vw, 1.64rem);
-      color: #626A58;
+      color: #454e3c;
       margin-bottom: 1rem;
       line-height: 1.35;
+      text-wrap: balance;
     }
 
     .line-name {
       font-family: 'Allura', cursive;
+      font-synthesis: none;
       color: #5D6553;
       font-size: clamp(3.7rem, 11vw, 6.6rem);
       line-height: 0.95;
@@ -395,44 +412,53 @@
     .line-relation {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1rem, 3vw, 1.28rem);
-      color: #78806f;
-      letter-spacing: 0.08em;
+      color: #47513f;
+      font-weight: 600;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 0.18rem;
+      text-wrap: balance;
     }
 
     .line-parents {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1rem, 3.15vw, 1.28rem);
-      color: #707666;
+      color: #454e3c;
+      font-weight: 600;
       letter-spacing: 0.02em;
       margin-bottom: 1.1rem;
       line-height: 1.35;
+      text-wrap: balance;
     }
 
     .line-with {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      color: #8B8F80;
-      font-size: clamp(1.05rem, 3vw, 1.32rem);
+      color: #525c47;
+      font-weight: 600;
+      font-size: clamp(1.2rem, 3.4vw, 1.6rem);
       margin-bottom: 1rem;
     }
 
     .line-date {
       font-family: 'Cinzel', serif;
       font-size: clamp(1.1rem, 3.1vw, 1.48rem);
-      letter-spacing: 0.06em;
-      color: #55604d;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #39432f;
+      font-weight: 600;
       margin-bottom: 0.6rem;
       line-height: 1.45;
+      text-wrap: balance;
     }
 
     .line-time {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.16rem, 3.3vw, 1.56rem);
-      color: #62705b;
+      color: #3f4935;
+      font-weight: 600;
       margin-bottom: 0.35rem;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
@@ -485,14 +511,16 @@
       font-family: 'Cinzel', serif;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(93,101,83,0.92);
-      font-size: clamp(1.05rem, 2.9vw, 1.32rem);
+      color: #3d4734;
+      font-weight: 600;
+      font-size: clamp(1.1rem, 3vw, 1.42rem);
       margin-bottom: 12px;
     }
 
     .journey-subtitle {
       font-family: 'Cormorant Garamond', serif;
-      color: #67725d;
+      color: #3e4836;
+      font-weight: 600;
       font-size: clamp(1.45rem, 4vw, 2.15rem);
       margin-bottom: 22px;
       font-style: italic;
@@ -518,7 +546,8 @@
     .story-tagline {
       margin-top: 18px;
       font-size: clamp(1.22rem, 3.65vw, 1.6rem);
-      color: #6d7663;
+      color: #414b39;
+      font-weight: 600;
       font-style: italic;
       letter-spacing: 0.02em;
     }
@@ -536,9 +565,11 @@
       font-family: 'Cinzel', serif;
       text-transform: none;
       letter-spacing: 0.08em;
-      color: #5c6651;
+      color: #8a6d23;
+      font-weight: 600;
       font-size: clamp(1.45rem, 4.5vw, 2.2rem);
       margin-bottom: 0.15rem;
+      text-shadow: 0 0 24px rgba(214,166,36,0.60), 0 0 9px rgba(214,166,36,0.45), 0 1px 2px rgba(0,0,0,0.10);
     }
 
     .subheading {
@@ -998,16 +1029,15 @@
       <div class="cover-open-card" id="coverOpenCard">
         <div class="open-card-inner">
           <div class="open-card-title">Engagement Invitation</div>
-          <p class="open-card-text">Tap to open</p>
           <button class="open-button" id="openInviteBtn" type="button">Tap to Open</button>
         </div>
       </div>
       <div class="transition-flash" id="transitionFlash" aria-hidden="true"></div>
     </section>
 
-    <div class="invitation-shell" id="invitationShell"> 
+    <div class="invitation-shell" id="invitationShell">
       <section class="page" id="page1">
-        <img class="bg-image" src="https://res.cloudinary.com/dx3f65i2v/image/upload/v1787127365/aaryabg1_yvkq3f.png" alt="Editorial invitation background" />
+        <img class="bg-image" src="https://res.cloudinary.com/dlqmwmkdh/image/upload/v1786868789/bg1_iuetaw.png" alt="Editorial invitation background" />
         <div class="page-content">
           <div class="editorial-block" id="typewriterBlock" aria-live="polite"></div>
           <button class="scroll-guide" id="scrollGuide" aria-label="Scroll to next section" type="button">
@@ -1129,7 +1159,6 @@ Gate No. 2</div>
     let invitationRevealed = false;
 
     const lines = [
-      { text: 'ॐ श्री गणेशाय नमः', className: 'line-mantra', speed: 55, pause: 220 },
       { text: 'With the divine blessings of Shri Nandkishwar Maharaj Ji', className: 'line-blessing', speed: 28, pause: 240 },
       { text: 'Smt. Khema Raina & Sh. S. K Raina cordially invite you to grace the engagement ceremony of their beloved granddaughter', className: 'line-invite', speed: 22, pause: 280 },
       { text: 'Aarya Raina', className: 'line-name', speed: 74, pause: 180 },
@@ -1140,8 +1169,8 @@ Gate No. 2</div>
       { text: 'son of', className: 'line-relation', speed: 42, pause: 90 },
       { text: 'Smt. Sunita Bhat & Sh. Ramesh Kumar Bhat', className: 'line-parents', speed: 26, pause: 160 },
       { text: 'which will be held on', className: 'line-blessing', speed: 30, pause: 140 },
-      { text: 'Friday, October 30th 2026', className: 'line-date', speed: 32, pause: 120 },
-      { text: '11 am Onwards', className: 'line-time', speed: 48, pause: 100 }
+      { text: 'FRIDAY, OCTOBER 30TH 2026', className: 'line-date', speed: 32, pause: 120 },
+      { text: '11 AM ONWARDS', className: 'line-time', speed: 48, pause: 100 }
     ];
 
     function delay(ms) {
@@ -1161,9 +1190,20 @@ Gate No. 2</div>
       el.classList.add('done');
     }
 
+    async function ensureFonts() {
+      try {
+        await Promise.all([
+          document.fonts.load('600 1.4rem Cinzel'),
+          document.fonts.load('74px Allura'),
+          document.fonts.load('600 1.6rem Cormorant Garamond')
+        ]);
+      } catch (e) {}
+    }
+
     async function runTypewriter() {
       if (typingStarted) return;
       typingStarted = true;
+      await ensureFonts();
       for (const line of lines) {
         const p = document.createElement('div');
         p.className = `type-line ${line.className}`;
@@ -1488,6 +1528,7 @@ Gate No. 2</div>
     }, { threshold: 0.08, rootMargin: '0px 0px -12% 0px' });
     ringObserver.observe(ringZone);
   </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
